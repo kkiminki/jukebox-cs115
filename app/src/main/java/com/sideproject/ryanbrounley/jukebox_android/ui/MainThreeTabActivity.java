@@ -1,9 +1,16 @@
 package com.sideproject.ryanbrounley.jukebox_android.ui;
 
+import android.os.Bundle;
+
 import com.sideproject.ryanbrounley.jukebox_android.FakeFragment;
 
 
 public abstract class MainThreeTabActivity extends ThreeTabActivity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
 
     //Set all the tabs to set the content to the corresponding fragment
     //when they are clicked
