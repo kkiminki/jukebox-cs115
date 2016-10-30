@@ -1,6 +1,5 @@
 package com.sideproject.ryanbrounley.jukebox_android;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,12 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.content.Context;
 
-import com.spotify.sdk.android.player.Config;
-import com.spotify.sdk.android.player.ConnectionStateCallback;
-import com.spotify.sdk.android.player.Player;
-import com.spotify.sdk.android.player.Spotify;
 
 /**
  * Created by kylerkiminki on 10/21/16.
@@ -21,10 +15,6 @@ import com.spotify.sdk.android.player.Spotify;
 
 public class PlayerFragment extends Fragment  {
 
-    // TODO: Replace with your client ID
-    private static final String CLIENT_ID = "yourclientid";
-    // TODO: Replace with your redirect URI
-    private static final String REDIRECT_URI = "testschema://callback";
     private static final String TAG = "PlayerActivity";
     private static final String test_uri = "spotify:track:17xbKoCF5iDcSb9usFt2yO";
 

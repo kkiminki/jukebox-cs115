@@ -1,6 +1,5 @@
 package com.sideproject.ryanbrounley.jukebox_android;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +14,17 @@ import com.spotify.sdk.android.player.Spotify;
 
 /**
  * Created by ryanbrounley on 10/22/15.
+ *
+ * Edited by Kyler Kiminki 10/22/16
  */
+
 public class Menu extends MainThreeTabActivity implements PlayerNotificationCallback, ConnectionStateCallback{
     Bundle args;
     private static final String CLIENT_ID = "b2e9ab519e00426cbc10567e290ea8fd";
     private Player mPlayer;
 
+    //Configures the player with the access token passed in
+    //from MainActivity
     @Override
     public void onCreate(Bundle savedInstanceState){
         args = getIntent().getExtras();
@@ -41,31 +45,47 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
         super.onCreate(savedInstanceState);
     }
 
+    //Helper function to play a song
     public void PlaySong(String song){
         mPlayer.play(song);
         Log.d("Menu", "Calling PlaySong");
         Log.d("Menu", "URI = "+song);
     }
 
+    //Helper function to pause the player
     public void PausePlayer(){
         mPlayer.pause();
         Log.d("Menu", "Calling Pause");
     }
 
+    //Helper function to play the next song
     public void PlayNext(){
         mPlayer.skipToNext();
         Log.d("Menu", "Calling play next");
     }
 
+    //Helper function to play the previous song
     public void PlayPrev(){
         mPlayer.skipToPrevious();
         Log.d("Menu", "Calling play prev");
     }
 
+    //Helper function to set the repeat value on the player
     public void PlayerRepeat(boolean b){
         mPlayer.setRepeat(b);
     }
 
+    //Helper function to put a song in the queue
+    public void PlayerEnqueue(String song){
+        mPlayer.queue(song);
+    }
+
+    //Helper function to clear the queue
+    public void PlayerClearQueue(){
+        mPlayer.clearQueue();
+    }
+
+    //Sets the initial fragment of the menu activity
     @Override
     protected Fragment getInitialFragment() {
         Fragment playerFragment = new PlayerFragment();
