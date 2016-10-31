@@ -86,11 +86,6 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
         playlist.addSong(song);
     }
 
-    //Helper function to clear the queue
-    public void PlayerClearQueue(){
-        mPlayer.clearQueue();
-    }
-
     public void PlayerRemoveSong(Song song){
         playlist.remove(song);
     }
