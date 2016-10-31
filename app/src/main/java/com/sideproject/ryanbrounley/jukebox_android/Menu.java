@@ -3,8 +3,8 @@ package com.sideproject.ryanbrounley.jukebox_android;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
-import android.content.Context;
 import com.sideproject.ryanbrounley.jukebox_android.ui.MainThreeTabActivity;
+import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
 import com.spotify.sdk.android.player.Config;
 import com.spotify.sdk.android.player.ConnectionStateCallback;
 import com.spotify.sdk.android.player.Player;
@@ -22,6 +22,8 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     Bundle args;
     private static final String CLIENT_ID = "b2e9ab519e00426cbc10567e290ea8fd";
     private Player mPlayer;
+    private Playlist playlist;
+    private int position = 0;
 
     //Configures the player with the access token passed in
     //from MainActivity
@@ -70,14 +72,18 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
         Log.d("Menu", "Calling play prev");
     }
 
+    public void ResumePlayer(){
+        mPlayer.resume();
+    }
+
     //Helper function to set the repeat value on the player
     public void PlayerRepeat(boolean b){
         mPlayer.setRepeat(b);
     }
 
     //Helper function to put a song in the queue
-    public void PlayerEnqueue(String song){
-        mPlayer.queue(song);
+    public void PlayerEnqueue(Song song){
+        playlist.addSong(song);
     }
 
     //Helper function to clear the queue
@@ -85,45 +91,62 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
         mPlayer.clearQueue();
     }
 
+    public void PlayerRemoveSong(Song song){
+        playlist.remove(song);
+    }
+
     //Sets the initial fragment of the menu activity
     @Override
     protected Fragment getInitialFragment() {
         Fragment playerFragment = new PlayerFragment();
-        Context menuContext = this;
         playerFragment.setArguments(args);
         return playerFragment;
     }
 
     @Override
     public void onLoggedIn() {
-        Log.d("MainActivity", "User logged in");
+        Log.d("Menu", "User logged in");
     }
 
     @Override
     public void onLoggedOut() {
-        Log.d("MainActivity", "User logged out");
+        Log.d("Menu", "User logged out");
     }
 
     @Override
     public void onLoginFailed(Throwable error) {
-        Log.d("MainActivity", "Login failed");
+        Log.d("Menu", "Login failed");
     }
 
     @Override
     public void onTemporaryError() {
-        Log.d("MainActivity", "Temporary error occurred");
+        Log.d("Menu", "Temporary error occurred");
     }
 
     @Override
     public void onConnectionMessage(String message) {
-        Log.d("MainActivity", "Received connection message: " + message);
+        Log.d("Menu", "Received connection message: " + message);
     }
 
     @Override
     public void onPlaybackEvent(PlayerNotificationCallback.EventType eventType, PlayerState playerState) {
-        Log.d("MainActivity", "Playback event received: " + eventType.name());
+        Log.d("Menu", "Playback event received: " + eventType.name());
         switch (eventType) {
-            // Handle event type as necessary
+            case TRACK_CHANGED:
+                if(++position < playlist.size()){
+                    mPlayer.queue(playlist.getSongAt(position).getUri());
+                }else{
+                    position = 0;
+                    mPlayer.queue(playlist.getSongAt(position).getUri());
+                }
+                break;
+            case SKIP_PREV:
+                if(--position > 0){
+                    mPlayer.play(playlist.getSongAt(position).getUri());
+                }else{
+                    position = playlist.size()-1;
+                    mPlayer.play(playlist.getSongAt(position).getUri());
+                }
             default:
                 break;
         }
@@ -131,8 +154,9 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
 
     @Override
     public void onPlaybackError(PlayerNotificationCallback.ErrorType errorType, String errorDetails) {
-        Log.d("MainActivity", "Playback error received: " + errorType.name());
+        Log.d("Menu", "Playback error received: " + errorType.name());
         switch (errorType) {
+
             // Handle error type as necessary
             default:
                 break;

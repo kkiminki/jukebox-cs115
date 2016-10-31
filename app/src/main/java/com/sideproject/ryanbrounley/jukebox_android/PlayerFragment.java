@@ -17,30 +17,33 @@ public class PlayerFragment extends Fragment  {
 
     private static final String TAG = "PlayerActivity";
     private static final String test_uri = "spotify:track:17xbKoCF5iDcSb9usFt2yO";
+    private static final String test_2 = "spotify:track:6RNgdXbb4yfKeihXYilZJI";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_player, container, false);
 
-        String accessToken = getArguments().getString("AccessToken");
-        Log.d("PlayerFragment", "Access Token = "+accessToken);
         final Menu menuContext = (Menu) getActivity();
 
         final Button playbtn = (Button)v.findViewById(R.id.play_button);
         Button prevbtn = (Button)v.findViewById(R.id.prev_button);
         Button nextbtn = (Button)v.findViewById(R.id.next_button);
 
+        menuContext.PlayerEnqueue(test_uri);
+        menuContext.PlayerEnqueue(test_2);
+        menuContext.PausePlayer();
+
         menuContext.PlayerRepeat(true);
         playbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(playbtn.getText().equals("play")) {
-                    menuContext.PlaySong(test_uri);
+                    menuContext.ResumePlayer();
                     playbtn.setText("pause");
                 }else {
                     menuContext.PausePlayer();
-                    Log.d(TAG, "playbtn text = "+playbtn.getText());
+                    playbtn.setText("play");
                 }
             } });
 

@@ -14,13 +14,8 @@ public class Playlist {
         queue.add(s);
     }
 
-    public Song getNext(){
-        if(queue.isEmpty()){
-            return queue.remove(queue.size()-1);
-        }else{
-            Log.d("Playlist", "couldn't get next queue is empty");
-            return new Song();
-        }
+    public Song getSongAt(int i){
+        return queue.get(i);
     }
 
     public void remove(Song s){
@@ -30,6 +25,10 @@ public class Playlist {
                 Log.d("Playlist", "Removed "+s.getName()+" from the queue");
             }
         }
+    }
+
+    public int size(){
+        return queue.size();
     }
 
 }
