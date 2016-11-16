@@ -3,6 +3,7 @@ package com.sideproject.ryanbrounley.jukebox_android.ui;
 import android.os.Bundle;
 
 import com.sideproject.ryanbrounley.jukebox_android.FakeFragment;
+import com.sideproject.ryanbrounley.jukebox_android.SearchInterfaceFragment;
 
 
 public abstract class MainThreeTabActivity extends ThreeTabActivity {
@@ -20,7 +21,7 @@ public abstract class MainThreeTabActivity extends ThreeTabActivity {
     @Override
     final protected void setUp() {
         setLeftTabListener(new OnClickChangeContent(new FakeFragment(), "Create")); //Recent is new main fragment 6/19/15
-        setMiddleTabListener(new OnClickChangeContent(new FakeFragment(), "Find"));
+        setMiddleTabListener(new OnClickChangeContent(new SearchInterfaceFragment(), "Search"));
         setRightTabListener(new OnClickChangeContent(new FakeFragment(), "Current"));
     }
 }
