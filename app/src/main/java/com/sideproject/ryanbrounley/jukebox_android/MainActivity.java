@@ -10,18 +10,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.sideproject.ryanbrounley.jukebox_android.ui.MainThreeTabActivity;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
-import com.spotify.sdk.android.player.Config;
 import com.spotify.sdk.android.player.ConnectionStateCallback;
 import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.PlayerNotificationCallback;
 import com.spotify.sdk.android.player.PlayerState;
 import com.spotify.sdk.android.player.Spotify;
-
-import java.io.Serializable;
 
 public class MainActivity extends Activity implements
         PlayerNotificationCallback, ConnectionStateCallback {
@@ -55,24 +51,15 @@ public class MainActivity extends Activity implements
 
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
-            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            final AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
-                Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
-                mPlayer = Spotify.getPlayer(playerConfig, this, new Player.InitializationObserver() {
-                    @Override
-                    public void onInitialized(Player player) {
-                        mPlayer.addConnectionStateCallback(MainActivity.this);
-                        mPlayer.addPlayerNotificationCallback(MainActivity.this);
-                        Intent verified = new Intent(ctx, Menu.class);
-                        startActivity(verified);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        Log.e("MainActivity", "Could not initialize player: " + throwable.getMessage());
-                    }
-                });
+                Intent verified = new Intent(ctx, Menu.class);
+                verified.putExtras(new Bundle());
+                Bundle bund = verified.getExtras();
+                bund.putString("AccessToken", response.getAccessToken());
+                Log.d("MainActivity", "AccessToken = "+bund.getString("AccessToken"));
+                verified.putExtras(bund);
+                startActivity(verified);
             }
         }
     }
