@@ -31,12 +31,11 @@ public class PlayerFragment extends Fragment  {
         Button prevbtn = (Button)v.findViewById(R.id.prev_button);
         Button nextbtn = (Button)v.findViewById(R.id.next_button);
 
-        Song song1 = new Song();
-        song1.setUri(test_uri);
-        Song song2 = new Song();
-        song2.setUri(test_2);
+        Song song1 = new Song(test_uri);
+        Song song2 = new Song(test_2);
         menuContext.PlayerEnqueue(song1);
         menuContext.PlayerEnqueue(song2);
+        menuContext.PlaySong(song1.getUri());
         menuContext.PausePlayer();
 
         menuContext.PlayerRepeat(true);

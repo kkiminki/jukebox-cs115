@@ -16,7 +16,8 @@ public class Song {
     private int upvotes=0;
     private int downvotes=0;
 
-    public Song(){}
+    //public Song(){
+    //}
 
     public Song(String artist, String uri, String album, URL image, URL thumbnail, String name){
         this.artist = artist;
@@ -25,6 +26,10 @@ public class Song {
         this.image = image;
         this.thumbnail = thumbnail;
         this.name = name;
+    }
+
+    public Song(String uri){
+        this.uri=uri;
     }
 
     public void setArtist(String artist){

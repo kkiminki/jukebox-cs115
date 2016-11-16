@@ -29,6 +29,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     //from MainActivity
     @Override
     public void onCreate(Bundle savedInstanceState){
+        playlist = new Playlist();
         args = getIntent().getExtras();
         Log.d("Menu", "AccessToken = "+args.getString("AccessToken"));
         Config playerConfig = new Config(this, args.getString("AccessToken"), CLIENT_ID);
@@ -83,6 +84,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
 
     //Helper function to put a song in the queue
     public void PlayerEnqueue(Song song){
+        Log.d("Menu", "song uri = "+song.getUri());
         playlist.addSong(song);
     }
 
@@ -130,9 +132,11 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
             case TRACK_CHANGED:
                 if(++position < playlist.size()){
                     mPlayer.queue(playlist.getSongAt(position).getUri());
+                    Log.d("Menu", "playing song at position "+position);
                 }else{
                     position = 0;
                     mPlayer.queue(playlist.getSongAt(position).getUri());
+                    Log.d("Menu", "playing song at position "+position);
                 }
                 break;
             case SKIP_PREV:
