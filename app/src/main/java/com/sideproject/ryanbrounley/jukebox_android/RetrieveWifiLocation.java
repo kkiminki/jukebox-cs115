@@ -8,9 +8,14 @@ import android.util.Log;
  * Committed by Matthew Mayr on 11/3/2016.
  */
 
-public class RetrieveWifiLocation extends FakeFragment { //extends FakeFragment maybe?
+public class RetrieveWifiLocation extends FakeFragment {
 
-    LocationManager lm=(LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+    Context lContext;
+    public RetrieveWifiLocation(Context lContext) {
+        this.lContext = lContext;
+    }
+
+    LocationManager lm=(LocationManager) lContext.getSystemService(Context.LOCATION_SERVICE);
     boolean wifiEnabled = lm
             .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
