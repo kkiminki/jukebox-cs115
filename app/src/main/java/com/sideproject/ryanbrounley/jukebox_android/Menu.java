@@ -139,13 +139,6 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
                     Log.d("Menu", "playing song at position "+position);
                 }
                 break;
-            case SKIP_PREV:
-                if(--position > 0){
-                    mPlayer.play(playlist.getSongAt(position).getUri());
-                }else{
-                    position = playlist.size()-1;
-                    mPlayer.play(playlist.getSongAt(position).getUri());
-                }
             default:
                 break;
         }

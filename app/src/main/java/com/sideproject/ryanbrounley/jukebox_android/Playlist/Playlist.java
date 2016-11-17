@@ -46,6 +46,11 @@ public class Playlist {
         return queue.isEmpty();
     }
 
+    public void clear(){
+        while (!this.isEmpty())
+            this.popSong();
+    }
+
     public void sort(){
         mergeSort(this);
     }
