@@ -11,6 +11,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.GET;
+
 
 /**
  * Created by Anshika on 11/1/2016.
@@ -35,15 +44,27 @@ public class SearchInterfaceFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 //                Context context = getActivity();
-//                CharSequence text = "Hello toast!";
-//                int duration = Toast.LENGTH_SHORT;
-//
-//                Toast toast = Toast.makeText(context, text, duration);
-//                toast.show();
+                HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+                logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+                OkHttpClient httpClient = new OkHttpClient.Builder()
+                        .addInterceptor(logging)
+                        .build();
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://api.spotify.com")
+                        .addConverterFactory(GsonConverterFactory.create())	//parse Gson string
+                        .client(httpClient)	//add logging
+                        .build();
+                SpotifyService service = retrofit.create(SpotifyService.class);
 
             }
         });
 
         return v;
+    }
+
+    public interface SpotifyService {
+      //  @GET("default/get_weather")
+     //   Call<WeatherResponse> registerUser();
     }
 }
