@@ -31,7 +31,6 @@ public class PlayerFragment extends Fragment  {
         Button prevbtn = (Button)v.findViewById(R.id.prev_button);
         Button nextbtn = (Button)v.findViewById(R.id.next_button);
 
-        //menuContext.PlayerRepeat(true);
         playbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

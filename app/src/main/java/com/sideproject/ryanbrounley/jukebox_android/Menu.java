@@ -133,10 +133,16 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
                 if(++position < playlist.size()){
                     mPlayer.queue(playlist.getSongAt(position).getUri());
                     Log.d("Menu", "playing song at position "+position);
+                    //firebase.getPlaylist();
+                    playlist.vetoScan();
+                    playlist.sort();
                 }else{
                     position = 0;
                     mPlayer.queue(playlist.getSongAt(position).getUri());
                     Log.d("Menu", "playing song at position "+position);
+                    //firebase.getPlayist
+                    playlist.vetoScan();
+                    playlist.sort();
                 }
                 break;
             default:

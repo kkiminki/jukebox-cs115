@@ -1,22 +1,24 @@
 package com.sideproject.ryanbrounley.jukebox_android.Playlist;
 
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by kylerkiminki on 10/30/16.
  */
 
 public class Song {
-    private String artist;
+    private List<String> artist;
     private String uri;
     private String album;
     private URL image;
     private URL thumbnail;
     private String name;
     private int upvotes=0;
+    private int downvotes=0;
 
     //Constructor for the song class
-    public Song(String artist, String uri, String album, URL image, URL thumbnail, String name){
+    public Song(List<String> artist, String uri, String album, URL image, URL thumbnail, String name){
         this.artist = artist;
         this.uri = uri;
         this.album = album;
@@ -31,20 +33,9 @@ public class Song {
         this.uri=uri;
     }
 
-    //TODO Delete setters: should be set by constructor
-    //Artist setter
-    public void setArtist(String artist){
-        this.artist = artist;
-    }
-
-    //Artist getter
-    public String getArtist(){
+    //Artists getter
+    public List<String> getArtists(){
         return this.artist;
-    }
-
-    //URI setter
-    public void setUri(String uri){
-        this.uri = uri;
     }
 
     //URI getter
@@ -52,19 +43,9 @@ public class Song {
         return this.uri;
     }
 
-    //Album setter
-    public void setAlbum(String album){
-        this.album = album;
-    }
-
     //Album getter
     public String getAlbum(){
         return this.album;
-    }
-
-    //Image setter
-    public void setImage(URL image){
-        this.image = image;
     }
 
     //Image getter
@@ -72,19 +53,9 @@ public class Song {
         return this.image;
     }
 
-    //Thumbnail setter
-    public void setThumbnail(URL thumbnail){
-        this.thumbnail = thumbnail;
-    }
-
     //Thumbnail getter
     public URL getThumbnail(){
         return this.thumbnail;
-    }
-
-    //Name setter
-    public void setName(String name){
-        this.name = name;
     }
 
     //Name getter
@@ -107,8 +78,13 @@ public class Song {
         return this.upvotes;
     }
 
-    //Upvotes decrementer
+    //Downvotes incrementer
     public void addDownvote(){
-        this.upvotes--;
+        this.downvotes++;
+    }
+
+    //Downvote getter
+    public int getDownvotes(){
+        return this.downvotes;
     }
 }

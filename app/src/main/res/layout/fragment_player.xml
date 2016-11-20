@@ -9,6 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +27,7 @@
             android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_below="@id/play_button"
-            android:text="prev"/>
+            android:text="down"/>
         <Button
             android:layout_width="80dp"
             android:layout_height="60dp"
