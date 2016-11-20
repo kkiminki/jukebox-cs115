@@ -2,60 +2,148 @@
 <items version="2" >
 
     <item
-        jar="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Anshika\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.0-beta3\8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2\converter-gson-2.0.0-beta3.jar"
+        jumboMode="true"
+        optimize="true"
         revision="22.0.1"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/classes-7030cdb3529565fe62d7d0b716041e97f045dca2.jar" />
+        sha1="8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-gson-2.0.0-beta3_81f49b1740a01101df0dc2d9516b9ec13e383775\classes.dex" />
     </item>
     <item
-        jar="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="97f7e239e86ef994de894818fdd8a71d2e89d6aa">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/classes-f1fdfcf2d4ea2e8b443c9bbf2d99b9ef57e2cf47.jar" />
-    </item>
-    <item
-        jar="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/classes-ec31ce792fefd8e755c1f3886cab9a5a36d114e5.jar" />
-    </item>
-    <item
-        jar="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-player/1.0.0-beta10/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="303cdfb0e82e35c8ee189313e3d0ccc144accdc4">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/classes-c5105832c5f138dc96cf6d7afe2cb4fde09dc304.jar" />
-    </item>
-    <item
-        jar="/home/ryanbrounley/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-407011078d9addd3d4b582723064e2f1bc098ed5.jar" />
-    </item>
-    <item
-        jar="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-player/1.0.0-beta10/jars/libs/jnihelpers-1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="863562b367d763d45f9bb44f58a5029007f79555">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/jnihelpers-1.0-f702539c69bfbbd225219624567c2661dc282e34.jar" />
-    </item>
-    <item
-        jar="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-318f92c858a1f266cfa589d9793f947b3ed0150a.jar" />
-    </item>
-    <item
-        jar="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-auth/1.0.0-beta10/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\exploded-aar\com.spotify.sdk\spotify-auth\1.0.0-beta10\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
         revision="22.0.1"
         sha1="a2736a2c8e3bd1d508baa11851e9a77f62646d08">
-        <dex dex="/home/ryanbrounley/JukeBox/JukeBox/app/build/intermediates/pre-dexed/debug/classes-48abd2b2cdc49e2c4433edfc73d82a4702664f22.jar" />
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.spotify.sdk-spotify-auth-1.0.0-beta10_16cc581ef108934063e73166bc681b7b90f72986\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="3127f540e0c71141827ebb91ca9eac0820e98e81">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_47416d99bbb406fb6cc9873f5bb026838e8ca568\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.0.0-RC1\be7e96331952019f16dc52dce09ab25df29353d7\okhttp-3.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="be7e96331952019f16dc52dce09ab25df29353d7">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.0.0-RC1_6b6cb8d1a4c0cc64412272e23a9e38c50dbb200d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="193b959e755b480f9872139ed010b344814fb3f7">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_24f3143057b20f84e35b48030bf44d1e0752f06d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="97f7e239e86ef994de894818fdd8a71d2e89d6aa">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-22.2.0_5a2b85fe3b0ee29bd3f2684cbe7350530f853021\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_2d11b5b60b8f892c0d5dc60342a4bb7c319d1ae5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.0-beta3\97675641051febfee098903cc0eff62f2826e34e\retrofit-2.0.0-beta3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="97675641051febfee098903cc0eff62f2826e34e">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.0.0-beta3_7962a832443731cd53ea298d4dc5511798c8a8f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.0_65e5404a0c47fb69c33cfec6054017b9bebbc165\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.2\f1bc476cc167b18e66c297df599b2377131a8947\gson-2.6.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.6.2_546d5e357101f1e21bd4edac99175756a524e7a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.6.0_25be7fa2ebd5073c5ba89ba6f854fd2053dcf856\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-22.2.0_d7eea79bdf27c91b8910895a58abd60f91c61f32\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.0_791b2010790b66189adb0462f2501801873b4d95\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\logging-interceptor\3.0.0-RC1\83fed2e3554b8bacf8209bc22b62d76d4f674533\logging-interceptor-3.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="83fed2e3554b8bacf8209bc22b62d76d4f674533">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\logging-interceptor-3.0.0-RC1_2faeee3c85da2bf9318ad19a76b257c8d4624885\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\exploded-aar\com.spotify.sdk\spotify-player\1.0.0-beta10\jars\libs\jnihelpers-1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="863562b367d763d45f9bb44f58a5029007f79555">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\jnihelpers-1.0_7195073d92cc41cf32b19a5a861e4eabf13ee816\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\exploded-aar\com.spotify.sdk\spotify-player\1.0.0-beta10\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.1"
+        sha1="303cdfb0e82e35c8ee189313e3d0ccc144accdc4">
+        <dex dex="C:\Users\Anshika\Documents\Fall 2016\CMPS 115\jukebox-cs115\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.spotify.sdk-spotify-player-1.0.0-beta10_a428babaef84b41de302b13c2c6d0796d3fab868\classes.dex" />
     </item>
 
 </items>
