@@ -17,7 +17,13 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Artist, Song, Etc."/>
+            android:hint="Artist, Song, Etc."
+            android:id="@+id/search_bar" />
     </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_results" />
 
 </LinearLayout>

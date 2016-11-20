@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 21
     buildToolsVersion "22.0.1" // Note: this version should match the latest build-tools version
-                           // that you installed in the SDK manager
+    // that you installed in the SDK manager
 
     defaultConfig {
         applicationId "com.sideproject.ryanbrounley.jukebox_android"
@@ -30,16 +30,22 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    // This library handles authentication and authorization
+    
+
+    // This library handles music playback
+    
+    // All other dependencies for your app should also be here:
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:cardview-v7:22.2.0'
-
-    // This library handles authentication and authorization
     compile 'com.spotify.sdk:spotify-auth:1.0.0-beta10@aar'
-
-    // This library handles music playback
     compile 'com.spotify.sdk:spotify-player:1.0.0-beta10@aar'
 
-    // All other dependencies for your app should also be here:
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    // Retrofit dependencies
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
+    compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.0-RC1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
 }
