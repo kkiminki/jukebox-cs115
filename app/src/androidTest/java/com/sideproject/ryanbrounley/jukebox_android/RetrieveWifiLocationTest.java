@@ -16,7 +16,7 @@ public class RetrieveWifiLocationTest {
     @Test
         public void testNullLm () {
             rwl.getLocation();
-            assertNotNull(rwl.lm);
+            assertNotNull(rwl);
         }
 
 }
