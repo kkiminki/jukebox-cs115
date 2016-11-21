@@ -12,6 +12,7 @@ import java.util.LinkedList;
 //Playlist class ~ queue to hold songs ~
 public class Playlist implements Iterable<Song>{
     private List<Song> queue;
+    private int ID;
 
     //Constructor for playlist
     public Playlist(){
@@ -20,6 +21,11 @@ public class Playlist implements Iterable<Song>{
 
     //Method to add a song to the playlist
     public void addSong(Song s){
+        for(Song song : this){
+            if(song.equals(s))
+                return;
+        }
+        Log.d("Playlist", "Song added "+s.getName());
         queue.add(s);
     }
 

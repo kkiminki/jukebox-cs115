@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class Song {
-    private List<String> artist;
+    private String artist;
     private String uri;
     private String album;
     private URL image;
@@ -18,23 +18,21 @@ public class Song {
     private int downvotes=0;
 
     //Constructor for the song class
-    public Song(List<String> artist, String uri, String album, URL image, URL thumbnail, String name){
+    public Song(String artist, String uri, String album, String name){
         this.artist = artist;
         this.uri = uri;
         this.album = album;
-        this.image = image;
-        this.thumbnail = thumbnail;
         this.name = name;
     }
 
     //Constructor for testing
     //TODO Delete this constructor
-    public Song(String uri){
-        this.uri=uri;
-    }
+    //public Song(String uri){
+    //    this.uri=uri;
+    //}
 
     //Artists getter
-    public List<String> getArtists(){
+    public String getArtists(){
         return this.artist;
     }
 

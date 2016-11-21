@@ -22,7 +22,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     Bundle args;
     private static final String CLIENT_ID = "b2e9ab519e00426cbc10567e290ea8fd";
     private Player mPlayer;
-    private Playlist playlist;
+    public Playlist playlist;
     private int position = 0;
 
     //Configures the player with the access token passed in
@@ -49,8 +49,9 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     }
 
     //Helper function to play a song
-    public void PlaySong(String song){
-        mPlayer.play(song);
+    public void PlaySong(Song song){
+        playlist.addSong(song);
+        mPlayer.play(song.getUri());
         Log.d("Menu", "Calling PlaySong");
         Log.d("Menu", "URI = "+song);
     }

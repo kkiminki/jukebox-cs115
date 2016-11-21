@@ -77,16 +77,18 @@ public class SearchInterfaceFragment extends Fragment {
                     @Override
                     public void onResponse(Response<SpotifySearchResponse> response) {
                         List<String> songs = new ArrayList<>();
-                        ArrayAdapter<String> listAdapter;
+                        SearchItemAdapter listAdapter;
                         ListView results = (ListView)v.findViewById(R.id.search_results);
 
                         if (response.code() == 200){
                             List<Item> items = response.body().getTracks().getItems();
-                            for (Item item: items) {
-                                songs.add(item.getName().toString() + " - " +
-                                        item.getArtists().get(0).getName().toString());
-                            }
-                            listAdapter = new ArrayAdapter<String>(getActivity(), R.layout.search_result, songs);
+                            //for (Item item: items) {
+                            //    songs.add(item.getName().toString() + " - " +
+                            //            item.getArtists().get(0).getName().toString());
+                            //}
+                            //listAdapter = new ArrayAdapter<String>(getActivity(), R.layout.search_result, songs);
+                            ArrayList<Item> arrayItems = new ArrayList<Item>(items);
+                            listAdapter = new SearchItemAdapter(getActivity(), arrayItems);
                             results.setAdapter(listAdapter);
                         } else {
 
