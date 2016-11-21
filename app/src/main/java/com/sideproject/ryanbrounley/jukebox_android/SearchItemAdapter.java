@@ -36,11 +36,13 @@ public class SearchItemAdapter extends ArrayAdapter<Item> {
         convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
+                    Log.d("SearchAdapter", "clicked");
                     //menu.PlayerEnqueue(s);
-                    if(menu.playlist.isEmpty()) {
+                    if(menu.playlist.isEmpty() && !menu.playing) {
                         menu.PlaySong(s);
                         Log.d("SearchAdapter", "Playing song "+s.getName());
                     }else{
+                        Log.d("SearchAdapter", "enqueue");
                         menu.PlayerEnqueue(s);
                         Log.d("PlayerAdapter", "Enqueueing Song "+s.getName());
                     }

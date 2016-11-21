@@ -7,7 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -17,8 +25,6 @@ import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
 public class PlayerFragment extends Fragment  {
 
     private static final String TAG = "PlayerActivity";
-    private static final String test_uri = "spotify:track:17xbKoCF5iDcSb9usFt2yO";
-    private static final String test_2 = "spotify:track:6RNgdXbb4yfKeihXYilZJI";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,35 +32,20 @@ public class PlayerFragment extends Fragment  {
         View v = inflater.inflate(R.layout.fragment_player, container, false);
 
         final Menu menuContext = (Menu) getActivity();
+        menuContext.onPlayer = true;
 
-        final Button playbtn = (Button)v.findViewById(R.id.play_button);
-        Button prevbtn = (Button)v.findViewById(R.id.prev_button);
-        Button nextbtn = (Button)v.findViewById(R.id.next_button);
+        TextView currentlyPlaying = (TextView) v.findViewById(R.id.current_song);
+        TextView upNext = (TextView) v.findViewById(R.id.song_up_next);
 
-        playbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(playbtn.getText().equals("play")) {
-                    menuContext.ResumePlayer();
-                    playbtn.setText("pause");
-                }else {
-                    menuContext.PausePlayer();
-                    playbtn.setText("play");
-                }
-            } });
-
-        prevbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                menuContext.PlayPrev();
-            } });
-
-        nextbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                menuContext.PlayNext();
-            } });
-
+        ListView remaining = (ListView) v.findViewById(R.id.player_queue_list);
+        SongAdapter songAdapter;
+        ArrayList<Song> songs = new ArrayList<>(menuContext.playlist.getQueue());
+        if(songs.size() > 2){
+            songs.remove(0);
+            songs.remove(0);
+        }
+        songAdapter = new SongAdapter(getActivity(), songs);
+        remaining.setAdapter(songAdapter);
 
         return v;
     }

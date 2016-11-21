@@ -44,6 +44,7 @@ public class SearchInterfaceFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         final View v = inflater.inflate(R.layout.searchlayout, container, false);
         final Menu menuContext = (Menu)getActivity();
+        menuContext.onPlayer=false;
 
         final EditText search_bar = (EditText)v.findViewById(R.id.search_bar);
 

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import android.util.Log;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Created by kylerkiminki on 10/30/16.
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 public class Playlist implements Iterable<Song>{
     private List<Song> queue;
     private int ID;
+    public boolean initialized=false;
 
     //Constructor for playlist
     public Playlist(){
@@ -21,9 +23,13 @@ public class Playlist implements Iterable<Song>{
 
     //Method to add a song to the playlist
     public void addSong(Song s){
-        for(Song song : this){
-            if(song.equals(s))
-                return;
+        if(!initialized)
+            initialized=true;
+        if(!isEmpty()) {
+            for (int i =0; i < size(); i++) {
+                if (getSongAt(i).equals(s))
+                    return;
+            }
         }
         Log.d("Playlist", "Song added "+s.getName());
         queue.add(s);
@@ -37,9 +43,9 @@ public class Playlist implements Iterable<Song>{
     //Method that grabs a song where Song.getUri()==uri
     public Song getSongAt(String uri){
         Song result=null;
-        for(Song s: this){
-            if(s.getUri()==uri) {
-                result = s;
+        for(int i =0; i<size(); i++){
+            if(getSongAt(i).getUri()==uri) {
+                result = getSongAt(i);
                 break;
             }
         }
@@ -88,6 +94,8 @@ public class Playlist implements Iterable<Song>{
 
     //Method that sorts the songs by upvotes
     public void sort(){
+        if(isEmpty())
+            return;
         mergeSort(this);
     }
 
@@ -134,10 +142,16 @@ public class Playlist implements Iterable<Song>{
 
     //Removes songs with
     public void vetoScan(){
-        for(Song s: this){
-            if(s.getDownvotes() > 2)
-                remove(s);
+        if(isEmpty())
+            return;
+        for(int i =0; i<size(); i++){
+            if(getSongAt(i).getDownvotes() > 2)
+                remove(getSongAt(i));
         }
+    }
+
+    public List<Song> getQueue(){
+        return this.queue;
     }
 
     //Song iterator for the playist

@@ -2,6 +2,8 @@ package com.sideproject.ryanbrounley.jukebox_android;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import com.sideproject.ryanbrounley.jukebox_android.ui.MainThreeTabActivity;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
@@ -11,6 +13,7 @@ import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.PlayerNotificationCallback;
 import com.spotify.sdk.android.player.PlayerState;
 import com.spotify.sdk.android.player.Spotify;
+import java.util.List;
 
 /**
  * Created by ryanbrounley on 10/22/15.
@@ -21,9 +24,13 @@ import com.spotify.sdk.android.player.Spotify;
 public class Menu extends MainThreeTabActivity implements PlayerNotificationCallback, ConnectionStateCallback{
     Bundle args;
     private static final String CLIENT_ID = "b2e9ab519e00426cbc10567e290ea8fd";
-    private Player mPlayer;
+    public  Player mPlayer;
     public Playlist playlist;
     private int position = 0;
+    public boolean playing = false;
+    public boolean onPlayer = false;
+    public String current, upNext;
+    public FragmentManager fm =getSupportFragmentManager();
 
     //Configures the player with the access token passed in
     //from MainActivity
@@ -51,9 +58,14 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     //Helper function to play a song
     public void PlaySong(Song song){
         playlist.addSong(song);
-        mPlayer.play(song.getUri());
+        current = playlist.getSongAt(0).getArtists()+": "
+                +playlist.getSongAt(0).getName();
+        mPlayer.play(playlist.popSong().getUri());
         Log.d("Menu", "Calling PlaySong");
         Log.d("Menu", "URI = "+song);
+        playing=true;
+        if(onPlayer)
+            updatePlayer();
     }
 
     //Helper function to pause the player
@@ -87,6 +99,10 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     public void PlayerEnqueue(Song song){
         Log.d("Menu", "song uri = "+song.getUri());
         playlist.addSong(song);
+        if(playlist.isEmpty())
+            mPlayer.queue(playlist.popSong().getUri());
+        if(onPlayer)
+            updatePlayer();
     }
 
     public void PlayerRemoveSong(Song song){
@@ -131,19 +147,18 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
         Log.d("Menu", "Playback event received: " + eventType.name());
         switch (eventType) {
             case TRACK_CHANGED:
-                if(++position < playlist.size()){
-                    mPlayer.queue(playlist.getSongAt(position).getUri());
-                    Log.d("Menu", "playing song at position "+position);
-                    //firebase.getPlaylist();
-                    playlist.vetoScan();
-                    playlist.sort();
-                }else{
-                    position = 0;
-                    mPlayer.queue(playlist.getSongAt(position).getUri());
+                if(!playlist.isEmpty()){
+                    mPlayer.queue(playlist.popSong().getUri());
                     Log.d("Menu", "playing song at position "+position);
                     //firebase.getPlayist
                     playlist.vetoScan();
                     playlist.sort();
+                    if(onPlayer)
+                        updatePlayer();
+                }else{
+                    playing = false;
+                    if(onPlayer)
+                        updatePlayer();
                 }
                 break;
             default:
@@ -167,5 +182,21 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
         // VERY IMPORTANT! This must always be called or else you will leak resources
         Spotify.destroyPlayer(this);
         super.onDestroy();
+    }
+
+    public void updatePlayer(){
+        if(!playlist.isEmpty()){
+            current = playlist.getSongAt(0).getArtists()+": "
+                    + playlist.getSongAt(0).getName();
+        }else{
+            current = "No song currently playing";
+        }
+        if(playlist.size()>1){
+            upNext = playlist.getSongAt(1).getArtists()+": "
+                    + playlist.getSongAt(1).getName();
+        }else{
+            upNext = "No song up next";
+        }
+        fm.beginTransaction().replace(R.id.container, new PlayerFragment()).commit();
     }
 }

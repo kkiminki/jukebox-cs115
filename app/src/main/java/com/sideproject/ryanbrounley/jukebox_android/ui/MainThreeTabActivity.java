@@ -22,7 +22,7 @@ public abstract class MainThreeTabActivity extends ThreeTabActivity {
     @Override
     final protected void setUp() {
         setLeftTabListener(new OnClickChangeContent(new PlayerFragment(), "Now Playing")); //Recent is new main fragment 6/19/15
-        setMiddleTabListener(new OnClickChangeContent(new SearchInterfaceFragment(), "Search"));
+        setMiddleTabListener(new OnClickChangeContent(new SearchInterfaceFragment(), "Add a Song"));
         setRightTabListener(new OnClickChangeContent(new FakeFragment(), "Current"));
     }
 }

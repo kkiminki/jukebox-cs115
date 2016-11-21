@@ -20,6 +20,8 @@ public class FakeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.temp_frag, container, false);
+        final Menu menu = (Menu) getActivity();
+        menu.onPlayer=false;
 
 
         return v;
