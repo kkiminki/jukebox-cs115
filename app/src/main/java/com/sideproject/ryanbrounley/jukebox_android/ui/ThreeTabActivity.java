@@ -77,7 +77,7 @@ public abstract class ThreeTabActivity extends AppCompatActivity {
         //nulls out title from laying on toolbar. .setDisplayTitleEnabled(false)
         //made the value of the title null as well which didn't allow for specific
         //page names drawn from resetting the title value in the fragment
-        setToolbarText(title, "home");
+        setToolbarText(title, "Now Playing");
         setSupportActionBar(toolbar);
 
         //sets the up arrow to white -- not the default

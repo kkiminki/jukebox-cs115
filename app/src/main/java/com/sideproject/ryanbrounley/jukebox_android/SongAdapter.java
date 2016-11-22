@@ -10,14 +10,13 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.util.Log;
 
-
-import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.Item;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
 
 /**
  * Created by kylerkiminki on 11/20/16.
  */
 
+//Adapter for song list view
 public class SongAdapter extends ArrayAdapter<Song> {
     public SongAdapter(Context context, ArrayList<Song> songs){
         super(context, 0, songs);
@@ -27,14 +26,26 @@ public class SongAdapter extends ArrayAdapter<Song> {
     public View getView(int position, View convertView, ViewGroup parent){
         Song song = getItem(position);
 
+        //If the view is not inflated then inflate a song template
         if(convertView==null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.song_template, parent, false);
+
+        //Creating fields for the views of the template
         TextView text = (TextView) convertView.findViewById(R.id.song_template_text);
+
+        //Buttons for upvotes and downvotes
         Button upvote = (Button) convertView.findViewById(R.id.upvote_button);
         Button downvote = (Button) convertView.findViewById(R.id.downvote_button);
+
+        //Set the text to Artist: Song name
         text.setText(song.getArtists()+": "+song.getName());
+
+        //Initialize a menu context and final reference
+        //to the song
         final Menu menu = (Menu) getContext();
         final Song s = song;
+
+        //Add onClickListener to increment upvotes
         upvote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -44,10 +55,13 @@ public class SongAdapter extends ArrayAdapter<Song> {
             }
         });
 
+        //Add onClickListener to increment downvotes
         downvote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 s.addDownvote();
+
+                //If downvotes >= 3 then remove the song
                 if (s.getDownvotes() >= 3){
                     menu.playlist.remove(s);
                     menu.updatePlayer();
