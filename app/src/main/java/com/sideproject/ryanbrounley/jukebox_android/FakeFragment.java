@@ -1,15 +1,14 @@
 package com.sideproject.ryanbrounley.jukebox_android;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spotify.sdk.android.player.Player;
-import com.spotify.sdk.android.player.Spotify;
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.AddPlaylistQuery;
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.AddSongQuery;
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.GetPlaylistsQuery;
 
 /**
  * Created by ryanbrounley on 10/23/15.
@@ -21,6 +20,14 @@ public class FakeFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.temp_frag, container, false);
 
+        GetPlaylistsQuery g = new GetPlaylistsQuery(getContext());
+        g.executeAndUpdate();
+
+        AddPlaylistQuery f = new AddPlaylistQuery("test3", "test4", getContext());
+        f.executeAndUpdate();
+
+        AddSongQuery e = new AddSongQuery("testSong", "test2", "testURI", "Ok Computer", getContext());
+        e.executeAndUpdate("-KX9iF5OplG9gzXuEwnS");
 
         return v;
     }
