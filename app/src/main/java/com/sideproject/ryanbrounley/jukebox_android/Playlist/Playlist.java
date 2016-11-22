@@ -29,11 +29,13 @@ public class Playlist {
         this.ID=ID;
         this.wifi=wifi;
         this.name=name;
+        this.queue = new LinkedList<Song>();
     }
 
     public Playlist(String wifi, String name){
         this.name = name;
         this.wifi = wifi;
+        this.queue=new LinkedList<Song>();
     }
 
     public String getName(){
@@ -44,7 +46,7 @@ public class Playlist {
         return this.ID;
     }
 
-    public String getWifi(){
+    public String getWifi() {
         return this.wifi;
     }
 
