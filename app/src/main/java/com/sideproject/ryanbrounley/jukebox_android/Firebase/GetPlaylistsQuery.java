@@ -2,8 +2,10 @@ package com.sideproject.ryanbrounley.jukebox_android.Firebase;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Playlist;
+import com.sideproject.ryanbrounley.jukebox_android.Playlist.PlaylistAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +47,7 @@ public class GetPlaylistsQuery {
         this.ctx = ctx;
     }
 
-    public void executeAndUpdate() {
+    public void executeAndUpdate(final ListView v) {
         PlaylistGet service = retrofit.create(PlaylistGet.class);
         Call<ResponseBody> playlists = service.listPlaylists();
 
@@ -53,7 +55,7 @@ public class GetPlaylistsQuery {
             @Override
             public void onResponse(Response<ResponseBody> response) {
                 try {
-                    List<Playlist> play = new ArrayList<Playlist>();
+                    ArrayList<Playlist> play = new ArrayList<Playlist>();
                     String body = response.body().string();
                     try {
                         JSONObject jsonArray = new JSONObject(body);
@@ -62,9 +64,11 @@ public class GetPlaylistsQuery {
                             String key = (String) keys.next();
                             JSONObject obj1 = jsonArray.getJSONObject(key);
                             JSONObject obj2 = obj1.getJSONObject("nameValuePairs");
-                            play.add(new Playlist((String) obj2.get("name"), (String) obj2.get("wifiName")));
+                            play.add(new Playlist(key, (String) obj2.get("name"), (String) obj2.get("wifiName")));
                             Log.d("init", play.toString());
                         }
+                        PlaylistAdapter p = new PlaylistAdapter(ctx, play);
+                        v.setAdapter(p);
                     }catch (JSONException exception){
                         Log.e("broken JSON", exception.toString());
                     }

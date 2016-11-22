@@ -22,7 +22,7 @@ public class FakeFragment extends Fragment {
         final Menu menu = (Menu) getActivity();
         menu.onPlayer=false;
 
-        GetPlaylistsQuery g = new GetPlaylistsQuery(getActivity());
+        /*GetPlaylistsQuery g = new GetPlaylistsQuery(getActivity());
         g.executeAndUpdate();
 
         AddPlaylistQuery f = new AddPlaylistQuery("test3", "test4", getActivity());
@@ -30,7 +30,7 @@ public class FakeFragment extends Fragment {
 
         AddSongQuery e = new AddSongQuery("testSong", "test2", "testURI", "Ok Computer", getActivity());
         e.executeAndUpdate("-KX9iF5OplG9gzXuEwnS");
-
+*/
         return v;
     }
 }

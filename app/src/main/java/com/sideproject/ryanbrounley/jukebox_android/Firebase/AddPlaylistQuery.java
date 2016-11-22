@@ -28,6 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Song;
@@ -68,6 +69,7 @@ public class AddPlaylistQuery {
                 newList.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Response<ResponseBody> response) {
+                            Log.d("made it: ", "" + response.message());
 
                     }
                     @Override
@@ -82,7 +84,7 @@ public class AddPlaylistQuery {
     }
 
     public interface PlaylistAdd {
-        @POST("playlists")
+        @POST("playlists.json")
         Call<ResponseBody> addPlaylist(@Body JSONObject playlist);
     }
 }

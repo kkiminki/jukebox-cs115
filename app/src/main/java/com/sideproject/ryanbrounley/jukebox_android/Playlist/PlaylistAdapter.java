@@ -26,13 +26,14 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         final Playlist playlist = getItem(position);
+        Log.i("PlaylistAdapter", "Inside adapter");
 
         //If the view is not inflated then inflate a playlist template
         if(convertView==null)
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.playlist_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.playlist_template, parent, false);
 
         //Creating fields for the views of the template
-        TextView text = (TextView) convertView.findViewById(R.id.playlist_template);
+        TextView text = (TextView) convertView.findViewById(R.id.playlist_template_text);
 
         text.setText(playlist.getName());
 

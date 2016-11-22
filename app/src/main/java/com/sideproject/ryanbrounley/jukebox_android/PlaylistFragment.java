@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.AddPlaylistQuery;
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.GetPlaylistsQuery;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Playlist;
 
 /**
@@ -25,10 +27,24 @@ public class PlaylistFragment extends Fragment{
         final Menu menu = (Menu) getActivity();
         menu.onPlayer=false;
 
+        AddPlaylistQuery f = new AddPlaylistQuery("test3", "test1", getActivity());
+        f.executeAndUpdate();
+
+        f = new AddPlaylistQuery("test4", "test5", getActivity());
+        f.executeAndUpdate();
+
+        f = new AddPlaylistQuery("test3", "test3", getActivity());
+        f.executeAndUpdate();
+
+
+
         Button submitButton = (Button) v.findViewById(R.id.create_playlist_button);
 
         ListView playlist_list = (ListView) v.findViewById(R.id.playlist_list_view);
         //getPlaylist(playlist_list);
+
+        GetPlaylistsQuery g = new GetPlaylistsQuery(getActivity());
+        g.executeAndUpdate(playlist_list);
 
         RetrieveWifiLocation r = new RetrieveWifiLocation(getActivity());
         final String ssid = r.getWifiName();
@@ -45,6 +61,8 @@ public class PlaylistFragment extends Fragment{
                     playlistName.setText(str);
                 }else{
                     Log.i("PlayerFragment", "Initializing new playlist");
+                    Log.i("PlayerFragment", "Playlist name = "+playlistName.getText().toString()
+                                             + "wifi = "+ssid);
                     menu.playlist = new Playlist(ssid, playlistName.getText().toString());
                 }
 
