@@ -6,17 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
-
-import org.w3c.dom.Text;
-
 
 /**
  * Created by kylerkiminki on 10/21/16.
@@ -24,8 +19,10 @@ import org.w3c.dom.Text;
 
 public class PlayerFragment extends Fragment  {
 
+    //Tag for the log
     private static final String TAG = "PlayerActivity";
 
+    //
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -56,8 +53,6 @@ public class PlayerFragment extends Fragment  {
             songAdapter = new SongAdapter(getActivity(), songs);
             remaining.setAdapter(songAdapter);
         }
-
         return v;
     }
-
 }

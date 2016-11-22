@@ -105,7 +105,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     //Sets the initial fragment of the menu activity
     @Override
     protected Fragment getInitialFragment() {
-        Fragment playerFragment = new PlayerFragment();
+        Fragment playerFragment = new PlaylistFragment();
         playerFragment.setArguments(args);
         return playerFragment;
     }

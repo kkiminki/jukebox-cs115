@@ -13,12 +13,39 @@ import java.util.Queue;
 //Playlist class ~ queue to hold songs ~
 public class Playlist {
     private List<Song> queue;
-    private int ID;
+    private String ID;
+    private String name;
+    private String wifi;
     public boolean initialized=false;
 
     //Constructor for playlist
-    public Playlist(){
+    public Playlist()
+    {
         queue= new LinkedList<Song>();
+    }
+
+    //Constructor for playlist
+    public Playlist(String ID, String wifi, String name){
+        this.ID=ID;
+        this.wifi=wifi;
+        this.name=name;
+    }
+
+    public Playlist(String wifi, String name){
+        this.name = name;
+        this.wifi = wifi;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getID(){
+        return this.ID;
+    }
+
+    public String getWifi(){
+        return this.wifi;
     }
 
     //Method to add a song to the playlist

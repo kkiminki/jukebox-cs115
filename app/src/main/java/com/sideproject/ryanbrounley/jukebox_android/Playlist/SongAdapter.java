@@ -1,4 +1,4 @@
-package com.sideproject.ryanbrounley.jukebox_android;
+package com.sideproject.ryanbrounley.jukebox_android.Playlist;
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -10,7 +10,9 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.util.Log;
 
+import com.sideproject.ryanbrounley.jukebox_android.Menu;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
+import com.sideproject.ryanbrounley.jukebox_android.R;
 
 /**
  * Created by kylerkiminki on 11/20/16.

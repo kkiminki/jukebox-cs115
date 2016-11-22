@@ -1,4 +1,4 @@
-package com.sideproject.ryanbrounley.jukebox_android;
+package com.sideproject.ryanbrounley.jukebox_android.SearchResponse;
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 
+import com.sideproject.ryanbrounley.jukebox_android.Menu;
+import com.sideproject.ryanbrounley.jukebox_android.R;
 import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.Item;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
 

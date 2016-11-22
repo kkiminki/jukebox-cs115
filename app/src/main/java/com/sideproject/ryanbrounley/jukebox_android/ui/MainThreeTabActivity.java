@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.sideproject.ryanbrounley.jukebox_android.PlayerFragment;
 import com.sideproject.ryanbrounley.jukebox_android.SearchInterfaceFragment;
-import com.sideproject.ryanbrounley.jukebox_android.FakeFragment;
+import com.sideproject.ryanbrounley.jukebox_android.PlaylistFragment;
 
 
 public abstract class MainThreeTabActivity extends ThreeTabActivity {
@@ -21,8 +21,8 @@ public abstract class MainThreeTabActivity extends ThreeTabActivity {
     //If they wanted to override it they should just extend ThreeTabActivity
     @Override
     final protected void setUp() {
-        setLeftTabListener(new OnClickChangeContent(new PlayerFragment(), "Now Playing")); //Recent is new main fragment 6/19/15
-        setMiddleTabListener(new OnClickChangeContent(new SearchInterfaceFragment(), "Add a Song"));
-        setRightTabListener(new OnClickChangeContent(new FakeFragment(), "Current"));
+        setLeftTabListener(new OnClickChangeContent(new PlaylistFragment(), "Pick a Playlist")); //Recent is new main fragment 6/19/15
+        setMiddleTabListener(new OnClickChangeContent(new PlayerFragment(), "Currently Playing"));
+        setRightTabListener(new OnClickChangeContent(new SearchInterfaceFragment(), "Add a Song"));
     }
 }

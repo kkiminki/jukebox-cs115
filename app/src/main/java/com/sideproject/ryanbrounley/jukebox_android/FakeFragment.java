@@ -23,7 +23,6 @@ public class FakeFragment extends Fragment {
         final Menu menu = (Menu) getActivity();
         menu.onPlayer=false;
 
-
         return v;
     }
 }

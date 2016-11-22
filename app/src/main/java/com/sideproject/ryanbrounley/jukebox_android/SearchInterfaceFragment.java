@@ -1,23 +1,17 @@
 package com.sideproject.ryanbrounley.jukebox_android;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
-import com.sideproject.ryanbrounley.jukebox_android.Playlist.Song;
 import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.Item;
+import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.SearchItemAdapter;
 import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.SpotifySearchResponse;
-import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.Tracks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +24,6 @@ import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
