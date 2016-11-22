@@ -11,7 +11,7 @@ import java.util.Queue;
  */
 
 //Playlist class ~ queue to hold songs ~
-public class Playlist implements Iterable<Song>{
+public class Playlist {
     private List<Song> queue;
     private int ID;
     public boolean initialized=false;
@@ -162,27 +162,6 @@ public class Playlist implements Iterable<Song>{
 
     public List<Song> getQueue(){
         return this.queue;
-    }
-
-    //Song iterator for the playist
-    public sItor iterator(){
-        return new sItor();
-    }
-
-    class sItor implements Iterator<Song>{
-        private int index = 0;
-
-        public boolean hasNext(){
-            return index < size();
-        }
-
-        public Song next(){
-            return getSongAt(index);
-        }
-
-        public void remove(){
-            removeAt(index);
-        }
     }
 
 }

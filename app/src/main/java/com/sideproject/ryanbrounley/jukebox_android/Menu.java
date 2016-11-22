@@ -22,34 +22,48 @@ import java.util.List;
  */
 
 public class Menu extends MainThreeTabActivity implements PlayerNotificationCallback, ConnectionStateCallback{
+
     Bundle args;
     private static final String CLIENT_ID = "b2e9ab519e00426cbc10567e290ea8fd";
+    //Spotify player
     public  Player mPlayer;
+    //The running playlist
     public Playlist playlist;
-    private int position = 0;
+    //boolean stating if the player is actively playing a song
     public boolean playing = false;
+    //boolean stating if the fragment is playerFragment
     public boolean onPlayer = false;
+    //String holding the currently playing song
     public String current="No song currently playing";
+    //Fragment manager for the menu activity
     public FragmentManager fm =getSupportFragmentManager();
 
     //Configures the player with the access token passed in
     //from MainActivity
     @Override
     public void onCreate(Bundle savedInstanceState){
+
+        //Make a new player with the access
+        //token from the login activity
         playlist = new Playlist();
         args = getIntent().getExtras();
         Log.d("Menu", "AccessToken = "+args.getString("AccessToken"));
         Config playerConfig = new Config(this, args.getString("AccessToken"), CLIENT_ID);
         mPlayer = Spotify.getPlayer(playerConfig, this, new Player.InitializationObserver() {
+
+            //Adding callbacks for the connection status
+            //and for player notifications
             @Override
             public void onInitialized(Player player) {
                 mPlayer.addConnectionStateCallback(Menu.this);
                 mPlayer.addPlayerNotificationCallback(Menu.this);
             }
 
+            //Logs a fatal error if the player cannot be
+            //initialized
             @Override
             public void onError(Throwable throwable) {
-                Log.e("Menu", "Could not initialize player: " + throwable.getMessage());
+                Log.wtf("Menu", "Could not initialize player: " + throwable.getMessage());
             }
         });
         super.onCreate(savedInstanceState);
@@ -67,24 +81,6 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
             updatePlayer();
     }
 
-    //Helper function to pause the player
-    public void PausePlayer(){
-        mPlayer.pause();
-        Log.d("Menu", "Calling Pause");
-    }
-
-    //Helper function to play the next song
-    public void PlayNext(){
-        mPlayer.skipToNext();
-        Log.d("Menu", "Calling play next");
-    }
-
-    //Helper function to play the previous song
-    public void PlayPrev(){
-        mPlayer.skipToPrevious();
-        Log.d("Menu", "Calling play prev");
-    }
-
     public void ResumePlayer(){
         mPlayer.resume();
     }
@@ -97,11 +93,6 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     //Helper function to put a song in the queue
     public void PlayerEnqueue(Song song){
         Log.d("Menu", "song uri = "+song.getUri());
-        /*if(playlist.isEmpty()) {
-            playlist.addSong(song);
-            upNext=song.getArtists()+": "+song.getName();
-            mPlayer.queue(playlist.popSong().getUri());
-        }else{*/
         playlist.addSong(song);
         if(onPlayer)
             updatePlayer();
@@ -154,12 +145,12 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
             case END_OF_CONTEXT:
                 playing=false;
                 break;
-            case TRACK_CHANGED:
+            case TRACK_END:
                 if(!playlist.isEmpty()){
                     current =  playlist.getSongAt(0).getArtists()+": "
                             +playlist.getSongAt(0).getName();
+                    Log.i("Menu", "In TRACK_CHANGED current = "+current);
                     mPlayer.queue(playlist.popSong().getUri());
-                    Log.d("Menu", "playing song at position "+position);
                     //firebase.getPlayist
                     playlist.vetoScan();
                     playlist.sort();
@@ -167,6 +158,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
                         updatePlayer();
                 }else{
                     current = "No song currently playing";
+                    Log.i("Menu", "In else of TRACK_CHANGED current = "+current);
                     if(onPlayer)
                         updatePlayer();
                 }
