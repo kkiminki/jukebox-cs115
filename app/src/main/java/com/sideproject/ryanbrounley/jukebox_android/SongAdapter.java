@@ -39,6 +39,8 @@ public class SongAdapter extends ArrayAdapter<Song> {
             @Override
             public void onClick(View v) {
                 s.addUpvote();
+                Log.i("PlayerFragment", "Adding upvotes");
+                Log.i("PlayerFragment", "Upvote count: "+s.getUpvotes());
             }
         });
 
@@ -46,6 +48,12 @@ public class SongAdapter extends ArrayAdapter<Song> {
             @Override
             public void onClick(View v){
                 s.addDownvote();
+                if (s.getDownvotes() >= 3){
+                    menu.playlist.remove(s);
+                    menu.updatePlayer();
+                }
+                Log.i("PlayerFragment", "Adding downvote");
+                Log.i("PlayerFragment", "Downvote count: "+s.getDownvotes());
             }
         });
 

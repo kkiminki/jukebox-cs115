@@ -35,6 +35,16 @@ public class Playlist implements Iterable<Song>{
         queue.add(s);
     }
 
+    public String logPlaylist(){
+        String str="(Playlist size: "+size()+"\n";
+        for(int i=0; i<size();i++){
+            str+=" ( "+getSongAt(i).getArtists()+": "+
+                    getSongAt(i).getName()+" )\n";
+        }
+        str+=")";
+        return str;
+    }
+
     //Method that grabs song at index i
     public Song getSongAt(int i){
         return queue.get(i);

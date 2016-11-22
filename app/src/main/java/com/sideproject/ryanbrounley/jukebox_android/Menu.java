@@ -29,7 +29,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     private int position = 0;
     public boolean playing = false;
     public boolean onPlayer = false;
-    public String current, upNext;
+    public String current="No song currently playing";
     public FragmentManager fm =getSupportFragmentManager();
 
     //Configures the player with the access token passed in
@@ -58,12 +58,11 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     //Helper function to play a song
     public void PlaySong(Song song){
         playlist.addSong(song);
-        current = playlist.getSongAt(0).getArtists()+": "
-                +playlist.getSongAt(0).getName();
-        mPlayer.play(playlist.popSong().getUri());
+        current = song.getArtists()+": "
+                +song.getName();
+        mPlayer.play(song.getUri());
         Log.d("Menu", "Calling PlaySong");
         Log.d("Menu", "URI = "+song);
-        playing=true;
         if(onPlayer)
             updatePlayer();
     }
@@ -98,9 +97,12 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     //Helper function to put a song in the queue
     public void PlayerEnqueue(Song song){
         Log.d("Menu", "song uri = "+song.getUri());
-        playlist.addSong(song);
-        if(playlist.isEmpty())
+        /*if(playlist.isEmpty()) {
+            playlist.addSong(song);
+            upNext=song.getArtists()+": "+song.getName();
             mPlayer.queue(playlist.popSong().getUri());
+        }else{*/
+        playlist.addSong(song);
         if(onPlayer)
             updatePlayer();
     }
@@ -146,8 +148,16 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     public void onPlaybackEvent(PlayerNotificationCallback.EventType eventType, PlayerState playerState) {
         Log.d("Menu", "Playback event received: " + eventType.name());
         switch (eventType) {
+            case PLAY:
+                playing=true;
+                break;
+            case END_OF_CONTEXT:
+                playing=false;
+                break;
             case TRACK_CHANGED:
                 if(!playlist.isEmpty()){
+                    current =  playlist.getSongAt(0).getArtists()+": "
+                            +playlist.getSongAt(0).getName();
                     mPlayer.queue(playlist.popSong().getUri());
                     Log.d("Menu", "playing song at position "+position);
                     //firebase.getPlayist
@@ -156,7 +166,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
                     if(onPlayer)
                         updatePlayer();
                 }else{
-                    playing = false;
+                    current = "No song currently playing";
                     if(onPlayer)
                         updatePlayer();
                 }
@@ -185,18 +195,6 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     }
 
     public void updatePlayer(){
-        if(!playlist.isEmpty()){
-            current = playlist.getSongAt(0).getArtists()+": "
-                    + playlist.getSongAt(0).getName();
-        }else{
-            current = "No song currently playing";
-        }
-        if(playlist.size()>1){
-            upNext = playlist.getSongAt(1).getArtists()+": "
-                    + playlist.getSongAt(1).getName();
-        }else{
-            upNext = "No song up next";
-        }
         fm.beginTransaction().replace(R.id.container, new PlayerFragment()).commit();
     }
 }

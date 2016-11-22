@@ -40,11 +40,11 @@ public class SearchItemAdapter extends ArrayAdapter<Item> {
                     //menu.PlayerEnqueue(s);
                     if(menu.playlist.isEmpty() && !menu.playing) {
                         menu.PlaySong(s);
-                        Log.d("SearchAdapter", "Playing song "+s.getName());
+                        Log.i("SearchAdapter", "Playing song "+s.getName());
                     }else{
-                        Log.d("SearchAdapter", "enqueue");
+                        Log.i("SearchAdapter", "enqueue");
                         menu.PlayerEnqueue(s);
-                        Log.d("PlayerAdapter", "Enqueueing Song "+s.getName());
+                        Log.i("PlayerAdapter", "Enqueueing Song "+s.getName());
                     }
                 }
         });

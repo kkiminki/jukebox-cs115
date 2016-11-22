@@ -34,18 +34,28 @@ public class PlayerFragment extends Fragment  {
         final Menu menuContext = (Menu) getActivity();
         menuContext.onPlayer = true;
 
+        Log.i("PlayerFragment", menuContext.playlist.logPlaylist());
+
         TextView currentlyPlaying = (TextView) v.findViewById(R.id.current_song);
         TextView upNext = (TextView) v.findViewById(R.id.song_up_next);
+
+        currentlyPlaying.setText(menuContext.current);
+        if(!menuContext.playlist.isEmpty()) {
+            upNext.setText(menuContext.playlist.getSongAt(0).getArtists()+": "
+                           +menuContext.playlist.getSongAt(0).getName());
+        }else{
+            String str ="No song is currently up next";
+            upNext.setText(str);
+        }
 
         ListView remaining = (ListView) v.findViewById(R.id.player_queue_list);
         SongAdapter songAdapter;
         ArrayList<Song> songs = new ArrayList<>(menuContext.playlist.getQueue());
         if(songs.size() > 2){
             songs.remove(0);
-            songs.remove(0);
+            songAdapter = new SongAdapter(getActivity(), songs);
+            remaining.setAdapter(songAdapter);
         }
-        songAdapter = new SongAdapter(getActivity(), songs);
-        remaining.setAdapter(songAdapter);
 
         return v;
     }
