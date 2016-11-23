@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.util.Log;
 
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.GetSinglePlaylistQuery;
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.UpdatePlaylistQuery;
 import com.sideproject.ryanbrounley.jukebox_android.Menu;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
 import com.sideproject.ryanbrounley.jukebox_android.R;
@@ -51,9 +53,16 @@ public class SongAdapter extends ArrayAdapter<Song> {
         upvote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                s.addUpvote();
+                GetSinglePlaylistQuery sq;
+                UpdatePlaylistQuery uq;
+                sq = new GetSinglePlaylistQuery(getContext());
+                sq.executeAndUpdate(menu.playlist.getID());
+                menu.playlist.getSongAt(s.getUri()).addUpvote();
+                uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
+                        menu.playlist.getQueue(), getContext());
+                uq.executeAndUpdate(menu.playlist.getID());
                 Log.i("PlayerFragment", "Adding upvotes");
-                Log.i("PlayerFragment", "Upvote count: "+s.getUpvotes());
+                Log.i("PlayerFragment", "Upvote count: "+menu.playlist.getSongAt(s.getUri()).getUpvotes());
             }
         });
 
@@ -61,13 +70,19 @@ public class SongAdapter extends ArrayAdapter<Song> {
         downvote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                s.addDownvote();
-
+                GetSinglePlaylistQuery sq;
+                UpdatePlaylistQuery uq;
+                sq = new GetSinglePlaylistQuery(getContext());
+                sq.executeAndUpdate(menu.playlist.getID());
+                menu.playlist.getSongAt(s.getUri()).addDownvote();
                 //If downvotes >= 3 then remove the song
-                if (s.getDownvotes() >= 3){
+                if (menu.playlist.getSongAt(s.getUri()).getDownvotes() >= 3){
                     menu.playlist.remove(s);
-                    menu.updatePlayer();
                 }
+                uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
+                        menu.playlist.getQueue(), getContext());
+                uq.executeAndUpdate(menu.playlist.getID());
+                menu.updatePlayer();
                 Log.i("PlayerFragment", "Adding downvote");
                 Log.i("PlayerFragment", "Downvote count: "+s.getDownvotes());
             }

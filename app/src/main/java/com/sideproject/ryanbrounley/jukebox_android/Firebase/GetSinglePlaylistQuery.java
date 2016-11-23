@@ -2,12 +2,12 @@ package com.sideproject.ryanbrounley.jukebox_android.Firebase;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ListView;
 
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Playlist;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.PlaylistAdapter;
-import com.sideproject.ryanbrounley.jukebox_android.RetrieveWifiLocation;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Song;
+import com.sideproject.ryanbrounley.jukebox_android.RetrieveWifiLocation;
+import com.sideproject.ryanbrounley.jukebox_android.Menu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,12 +26,13 @@ import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
- * Created by ryanbrounley on 11/21/16.
+ * Created by kylerkiminki on 11/22/16.
  */
 
-public class GetPlaylistsQuery {
+public class GetSinglePlaylistQuery {
     public Context ctx;
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 
@@ -45,35 +46,31 @@ public class GetPlaylistsQuery {
             .client(httpClient)
             .build();
 
-    public GetPlaylistsQuery(Context ctx) {
+    public GetSinglePlaylistQuery(Context ctx) {
         this.ctx = ctx;
     }
 
-    public void executeAndUpdate(final ListView v) {
-        PlaylistGet service = retrofit.create(PlaylistGet.class);
-        Call<ResponseBody> playlists = service.listPlaylists();
+    public void executeAndUpdate(String ID){
+        GetSinglePlaylistQuery.PlaylistGet service = retrofit.create(GetSinglePlaylistQuery.PlaylistGet.class);
+        Call<ResponseBody> playlists = service.getPlaylist(ID);
 
         playlists.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Response<ResponseBody> response) {
                 try {
-                    ArrayList<Playlist> play = new ArrayList<Playlist>();
+                    Playlist playlist;
                     String body = response.body().string();
+                    final Menu menu = (Menu) ctx;
                     try {
                         JSONObject jsonArray = new JSONObject(body);
                         Iterator keys = jsonArray.keys();
                         RetrieveWifiLocation r = new RetrieveWifiLocation(ctx);
-                        while(keys.hasNext()) {
-                            String key = (String) keys.next();
-                            JSONObject obj1 = jsonArray.getJSONObject(key);
-                            JSONObject obj2 = obj1.getJSONObject("nameValuePairs");
-                            Playlist temp = new Playlist(key, (String) obj2.get("wifiName"), (String) obj2.get("name"), (List<Song>) obj2.get("queue"));
-                            //if(temp.getWifi()==r.getWifiName())
-                            //    play.add(temp);
-                            //Log.d("init", play.toString());
-                        }
-                        PlaylistAdapter p = new PlaylistAdapter(ctx, play);
-                        v.setAdapter(p);
+                        String key = (String) keys.next();
+                        JSONObject obj1 = jsonArray.getJSONObject(key);
+                        JSONObject obj2 = obj1.getJSONObject("nameValuePairs");
+                        Playlist temp = new Playlist(key, (String) obj2.get("wifiName"), (String) obj2.get("name"), (List<Song>) obj2.get("queue"));
+                        Log.i("GetSinglePlaylistQuery", "PlaylistName ="+temp.getName());
+                        menu.playlist = temp;
                     }catch (JSONException exception){
                         Log.e("broken JSON", exception.toString());
                     }
@@ -89,7 +86,7 @@ public class GetPlaylistsQuery {
     }
 
     public interface PlaylistGet {
-        @GET("playlists.json")
-        Call<ResponseBody> listPlaylists();
+        @GET("playlists/{id}")
+        Call<ResponseBody> getPlaylist(@Path("id") String ID);
     }
 }

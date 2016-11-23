@@ -32,6 +32,13 @@ public class Playlist {
         this.queue = new LinkedList<Song>();
     }
 
+    public Playlist(String ID, String wifi, String name, List<Song> queue){
+        this.ID=ID;
+        this.wifi=wifi;
+        this.name=name;
+        this.queue=queue;
+    }
+
     public Playlist(String wifi, String name){
         this.name = name;
         this.wifi = wifi;

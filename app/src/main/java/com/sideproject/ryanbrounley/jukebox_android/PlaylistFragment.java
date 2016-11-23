@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+
 
 import com.sideproject.ryanbrounley.jukebox_android.Firebase.AddPlaylistQuery;
 import com.sideproject.ryanbrounley.jukebox_android.Firebase.GetPlaylistsQuery;
@@ -30,7 +30,6 @@ public class PlaylistFragment extends Fragment{
         Button submitButton = (Button) v.findViewById(R.id.create_playlist_button);
 
         ListView playlist_list = (ListView) v.findViewById(R.id.playlist_list_view);
-        //getPlaylist(playlist_list);
 
         GetPlaylistsQuery g = new GetPlaylistsQuery(getActivity());
         g.executeAndUpdate(playlist_list);
@@ -53,7 +52,7 @@ public class PlaylistFragment extends Fragment{
                     Log.i("PlayerFragment", "Playlist name = "+playlistName.getText().toString()
                                              + "wifi = "+ssid);
                     menu.playlist = new Playlist(ssid, playlistName.getText().toString());
-                    AddPlaylistQuery f = new AddPlaylistQuery(ssid, playlistName.getText().toString(), getActivity());
+                    AddPlaylistQuery f = new AddPlaylistQuery(ssid, playlistName.getText().toString(), menu.playlist.getQueue(), getActivity());
                     f.executeAndUpdate(menu.playlist);
                 }
 

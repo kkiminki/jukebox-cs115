@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.GetSinglePlaylistQuery;
 import com.sideproject.ryanbrounley.jukebox_android.ui.MainThreeTabActivity;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.*;
 import com.spotify.sdk.android.player.Config;
@@ -157,8 +159,8 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
                     Log.i("Menu", "In TRACK_CHANGED current = "+current);
                     songPlayed.add(playlist.getSongAt(0));
                     mPlayer.queue(playlist.popSong().getUri());
-                    //firebase.getPlayist
-                    //menu.playlist.hasPlayer(songsPlayed);
+                    GetSinglePlaylistQuery sq = new GetSinglePlaylistQuery(this);
+                    sq.executeAndUpdate(playlist.getID());
                     playlist.vetoScan();
                     playlist.sort();
                     if(onPlayer)

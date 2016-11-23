@@ -11,6 +11,8 @@ import android.widget.Toast;
 import android.util.Log;
 
 import com.sideproject.ryanbrounley.jukebox_android.Firebase.AddSongQuery;
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.GetSinglePlaylistQuery;
+import com.sideproject.ryanbrounley.jukebox_android.Firebase.UpdatePlaylistQuery;
 import com.sideproject.ryanbrounley.jukebox_android.Menu;
 import com.sideproject.ryanbrounley.jukebox_android.R;
 import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.Item;
@@ -39,20 +41,29 @@ public class SearchItemAdapter extends ArrayAdapter<Item> {
         convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    AddSongQuery q;
+                    GetSinglePlaylistQuery sq;
+                    UpdatePlaylistQuery uq;
                     Log.d("SearchAdapter", "clicked");
                     //menu.PlayerEnqueue(s);
                     if(menu.playlist.isEmpty() && !menu.playing) {
-                        q = new AddSongQuery(s.getName(), s.getArtists(), s.getUri(),
-                                                          s.getAlbum(), menu);
-                        q.executeAndUpdate(menu.playlist.getID());
+                        sq = new GetSinglePlaylistQuery(getContext());
+                        sq.executeAndUpdate(menu.playlist.getID());
+                        menu.playlist.addSong(s);
+                        uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
+                                                                         menu.playlist.getQueue(), getContext());
+                        uq.executeAndUpdate(menu.playlist.getID());
+                        menu.playlist.popSong();
                         menu.PlaySong(s);
                         Log.i("SearchAdapter", "Playing song "+s.getName());
                     }else{
                         if(!menu.playlist.isInPlaylist(s)) {
-                            q = new AddSongQuery(s.getName(), s.getArtists(), s.getUri(),
-                                    s.getAlbum(), menu);
-                            q.executeAndUpdate(menu.playlist.getID());
+                            sq = new GetSinglePlaylistQuery(getContext());
+                            sq.executeAndUpdate(menu.playlist.getID());
+                            menu.playlist.addSong(s);
+                            uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
+                                    menu.playlist.getQueue(), getContext());
+                            uq.executeAndUpdate(menu.playlist.getID());
+                            menu.playlist.popSong();
                         }
                         Log.i("SearchAdapter", "enqueue");
                         menu.PlayerEnqueue(s);
