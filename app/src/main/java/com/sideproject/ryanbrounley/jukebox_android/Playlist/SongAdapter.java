@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Button;
 import android.util.Log;
@@ -35,20 +36,22 @@ public class SongAdapter extends ArrayAdapter<Song> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.song_template, parent, false);
 
         //Creating fields for the views of the template
-        TextView text = (TextView) convertView.findViewById(R.id.song_template_text);
+        TextView artist = (TextView) convertView.findViewById(R.id.song_artist);
+        TextView track = (TextView) convertView.findViewById(R.id.song_track);
 
         //Buttons for upvotes and downvotes
-        Button upvote = (Button) convertView.findViewById(R.id.upvote_button);
-        Button downvote = (Button) convertView.findViewById(R.id.downvote_button);
+        ImageButton downvote = (ImageButton) convertView.findViewById(R.id.downvote_button);
 
         //Set the text to Artist: Song name
-        text.setText(song.getArtists()+": "+song.getName());
+        artist.setText(song.getArtists());
+        track.setText(song.getName());
 
         //Initialize a menu context and final reference
         //to the song
         final Menu menu = (Menu) getContext();
         final Song s = song;
 
+/*<<<<<<< HEAD
         //Add onClickListener to increment upvotes
         upvote.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -64,6 +67,9 @@ public class SongAdapter extends ArrayAdapter<Song> {
                 Log.i("PlayerFragment", "Upvote count: "+menu.playlist.getSongAt(s.getUri()).getUpvotes());
             }
         });
+
+=======
+>>>>>>> 2cf617fc80fcd92be29d0b7d017b70e24fd5dd78*/
 
         //Add onClickListener to increment downvotes
         downvote.setOnClickListener(new View.OnClickListener(){

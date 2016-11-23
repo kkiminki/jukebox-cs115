@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    tools:context="com.sideproject.ryanbrounley.jukebox_android"
+    tools:context="com.sideproject.ryanbrounley"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent">
 
@@ -12,54 +12,32 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="0dp"
         android:gravity="top"
         app:contentInsetStart="0dp"
+        android:background="#FF5722"
         app:theme="@style/ActionBar">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/page_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="18dp"
-                android:layout_centerInParent="true"
                 android:text="home"
+                android:paddingLeft="15dp"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 android:visibility="visible"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
-    <RadioGroup
-        android:id="@+id/hide_with_keyboard"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_height="32dp">
-        <RadioButton
-            android:id="@+id/tab3_left_btn"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#00FF00"/>
-        <RadioButton
-            android:id="@+id/tab3_middle_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#FF0000"/>
-        <RadioButton
-            android:id="@+id/tab3_right_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#0000FF"/>
-    </RadioGroup>
 
     <FrameLayout
         android:id="@+id/container"
@@ -67,4 +45,53 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:ignore="MergeRootFrame" />
+
+    <RadioGroup
+        android:id="@+id/hide_with_keyboard"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:background="@drawable/topshadow">
+        <RadioButton
+            android:id="@+id/tab3_left_btn"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:checked="true"
+            android:textOn=""
+            android:textOff=""
+            android:button="@null"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/playlist" />
+        <RadioButton
+            android:id="@+id/tab3_middle_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:checked="false"
+            android:textOn=""
+            android:button="@null"
+            android:textOff=""
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/player"/>
+        <RadioButton
+            android:id="@+id/tab3_right_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/search"
+            android:textOn=""
+            android:textOff=""
+            android:button="@null"
+            android:padding="8dp"
+            android:checked="false"
+            android:background="@android:color/transparent"/>
+    </RadioGroup>
 </LinearLayout>

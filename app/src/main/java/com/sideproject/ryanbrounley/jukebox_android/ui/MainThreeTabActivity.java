@@ -21,7 +21,7 @@ public abstract class MainThreeTabActivity extends ThreeTabActivity {
     //If they wanted to override it they should just extend ThreeTabActivity
     @Override
     final protected void setUp() {
-        setLeftTabListener(new OnClickChangeContent(new PlaylistFragment(), "Pick a Playlist")); //Recent is new main fragment 6/19/15
+        setLeftTabListener(new OnClickChangeContent(new PlaylistFragment(), "Jukebox")); //Recent is new main fragment 6/19/15
         setMiddleTabListener(new OnClickChangeContent(new PlayerFragment(), "Currently Playing"));
         setRightTabListener(new OnClickChangeContent(new SearchInterfaceFragment(), "Add a Song"));
     }

@@ -41,7 +41,6 @@ public class AddPlaylistQuery {
     public String name;
     public String wifiName;
     public Context ctx;
-    public List<Song> queue;
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 
     OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -54,11 +53,10 @@ public class AddPlaylistQuery {
             .client(httpClient)
             .build();
 
-    public AddPlaylistQuery(String wifiName, String name, List<Song>queue, Context ctx) {
+    public AddPlaylistQuery(String wifiName, String name, Context ctx) {
         this.ctx = ctx;
         this.wifiName = wifiName;
         this.name = name;
-        this.queue=queue;
     }
 
     public void executeAndUpdate(final Playlist p) {
@@ -67,7 +65,6 @@ public class AddPlaylistQuery {
         try {
             playlist.put("wifiName", wifiName);
             playlist.put("name", name);
-            playlist.put("queue", queue);
             Call<ResponseBody> newList = service.addPlaylist(playlist);
                 newList.enqueue(new Callback<ResponseBody>() {
                     @Override
