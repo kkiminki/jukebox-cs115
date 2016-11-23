@@ -30,6 +30,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.DELETE;
 
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Song;
 
@@ -37,9 +38,9 @@ import com.sideproject.ryanbrounley.jukebox_android.Playlist.Song;
  * Created by ryanbrounley on 11/21/16.
  */
 
-public class UpdatePlaylistQuery {
+public class DeleteQueueQuery {
     public Context ctx;
-    public List<Song> queue;
+
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 
     OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -52,38 +53,34 @@ public class UpdatePlaylistQuery {
             .client(httpClient)
             .build();
 
-    public UpdatePlaylistQuery(List<Song>queue, Context ctx) {
+    public DeleteQueueQuery(Context ctx) {
         this.ctx = ctx;
-        this.queue=queue;
     }
 
     public void executeAndUpdate(final String ID) {
-        DeleteQueueQuery dq = new DeleteQueueQuery(ctx);
-        dq.executeAndUpdate(ID);
         PlaylistUpdate service = retrofit.create(PlaylistUpdate.class);
         JSONObject playlist = new JSONObject();
         try {
-            playlist.put("queue", queue);
-            Call<ResponseBody> newList = service.addPlaylist(ID, playlist);
+            Call<ResponseBody> newList = service.addPlaylist(ID);
             newList.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Response<ResponseBody> response) {
-                    Log.d("UpdatePlaylist ", "response code: " + response.code());
+                    Log.d("DeleteQueueQuery", "code: " + response.code());
                 }
                 @Override
                 public void onFailure(Throwable t) {
-                    Log.e("UpdatePlaylist", "Failed to UPDATE playlists");
+                    Log.e("Failure", "Failed to DELETE playlists");
                 }
             });
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public interface PlaylistUpdate {
-        @POST("playlists/{id}/nameValuePairs/queue")
-        Call<ResponseBody> addPlaylist(@Path("id") String ID, @Body JSONObject playlist);
+        @DELETE("playlists/{id}/nameValuePairs/queue")
+        Call<ResponseBody> addPlaylist(@Path("id") String ID);
     }
 }
 

@@ -58,8 +58,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
                 sq = new GetSinglePlaylistQuery(getContext());
                 sq.executeAndUpdate(menu.playlist.getID());
                 menu.playlist.getSongAt(s.getUri()).addUpvote();
-                uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
-                        menu.playlist.getQueue(), getContext());
+                uq = new UpdatePlaylistQuery(menu.playlist.getQueue(), getContext());
                 uq.executeAndUpdate(menu.playlist.getID());
                 Log.i("PlayerFragment", "Adding upvotes");
                 Log.i("PlayerFragment", "Upvote count: "+menu.playlist.getSongAt(s.getUri()).getUpvotes());
@@ -79,8 +78,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
                 if (menu.playlist.getSongAt(s.getUri()).getDownvotes() >= 3){
                     menu.playlist.remove(s);
                 }
-                uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
-                        menu.playlist.getQueue(), getContext());
+                uq = new UpdatePlaylistQuery(menu.playlist.getQueue(), getContext());
                 uq.executeAndUpdate(menu.playlist.getID());
                 menu.updatePlayer();
                 Log.i("PlayerFragment", "Adding downvote");

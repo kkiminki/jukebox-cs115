@@ -49,8 +49,7 @@ public class SearchItemAdapter extends ArrayAdapter<Item> {
                         sq = new GetSinglePlaylistQuery(getContext());
                         sq.executeAndUpdate(menu.playlist.getID());
                         menu.playlist.addSong(s);
-                        uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
-                                                                         menu.playlist.getQueue(), getContext());
+                        uq = new UpdatePlaylistQuery(menu.playlist.getQueue(), getContext());
                         uq.executeAndUpdate(menu.playlist.getID());
                         menu.playlist.popSong();
                         menu.PlaySong(s);
@@ -60,10 +59,8 @@ public class SearchItemAdapter extends ArrayAdapter<Item> {
                             sq = new GetSinglePlaylistQuery(getContext());
                             sq.executeAndUpdate(menu.playlist.getID());
                             menu.playlist.addSong(s);
-                            uq = new UpdatePlaylistQuery(menu.playlist.getWifi(), menu.playlist.getName(),
-                                    menu.playlist.getQueue(), getContext());
+                            uq = new UpdatePlaylistQuery(menu.playlist.getQueue(), getContext());
                             uq.executeAndUpdate(menu.playlist.getID());
-                            menu.playlist.popSong();
                         }
                         Log.i("SearchAdapter", "enqueue");
                         menu.PlayerEnqueue(s);

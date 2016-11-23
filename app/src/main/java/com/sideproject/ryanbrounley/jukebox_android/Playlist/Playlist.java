@@ -1,7 +1,13 @@
 package com.sideproject.ryanbrounley.jukebox_android.Playlist;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+
+import android.os.Build;
+//import android.support.annotation.RequiresApi;
 import android.util.Log;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -71,7 +77,6 @@ public class Playlist {
                     return;
             }
         }
-        Log.d("Playlist", "Song added "+s.getName());
         queue.add(s);
     }
 
@@ -114,8 +119,6 @@ public class Playlist {
                 break;
             }
         }
-        if(result==null)
-            Log.d("Playlist", "getSongAt: couldn't find");
         return result;
     }
 
@@ -124,7 +127,6 @@ public class Playlist {
         for(int i=0; i<queue.size(); i++ ) {
             if(s.equals(queue.get(i))){
                 queue.remove(i);
-                Log.d("Playlist", "Removed "+s.getName()+" from the queue");
             }
         }
     }
@@ -159,50 +161,12 @@ public class Playlist {
 
     //Method that sorts the songs by upvotes
     public void sort(){
-        if(isEmpty())
-            return;
-        mergeSort(this);
-    }
-
-    //Recursive sorting helper function
-    private Playlist mergeSort(Playlist list){
-        if(list.size() <= 1){
-            return list;
-        }
-
-        Playlist left = new Playlist();
-        Playlist right = new Playlist();
-
-        for (int i =0; i< list.size(); i++){
-            if (i <= (list.size()/2)){
-                left.addSong(list.getSongAt(i));
-            }else{
-                right.addSong(list.getSongAt(i));
+        Collections.sort(queue, new Comparator<Song>() {
+            @Override
+            public int compare(Song s1, Song s2) {
+                return s2.getUpvotes() - s1.getUpvotes();
             }
-        }
-
-        left = mergeSort(left);
-        right = mergeSort(right);
-
-        return merge(left, right);
-    }
-
-    //Merging helper function
-    private Playlist merge(Playlist left, Playlist right){
-        Playlist result = new Playlist();
-        while((!left.isEmpty()) && (!right.isEmpty())){
-            if(left.getSongAt(0).getUpvotes() <= right.getSongAt(0).getUpvotes()){
-                result.addSong(left.popSong());
-            }
-            else{
-                result.addSong(right.popSong());
-            }
-        }
-        while(!left.isEmpty())
-            result.addSong(left.popSong());
-        while(!right.isEmpty())
-            result.addSong(right.popSong());
-        return result;
+        });
     }
 
     //Removes songs with
