@@ -76,7 +76,7 @@ public class UpdatePlaylistQuery {
                 }
                 @Override
                 public void onFailure(Throwable t) {
-                    Log.e("Failure", "Failed to GET playlists");
+                    Log.e("Failure", "Failed to UPDATE playlists");
                 }
             });
 
@@ -86,7 +86,7 @@ public class UpdatePlaylistQuery {
     }
 
     public interface PlaylistUpdate {
-        @POST("playlists/{id}")
+        @POST("playlists/{id}.json")
         Call<ResponseBody> addPlaylist(@Path("id") String ID, @Body JSONObject playlist);
     }
 }
