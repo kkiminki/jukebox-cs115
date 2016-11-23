@@ -38,7 +38,7 @@ import com.sideproject.ryanbrounley.jukebox_android.Playlist.Song;
 
 public class AddSongQuery {
     public String name, uri, artist, album;
-    public int downvotes;
+    public int downvotes, upvotes;
     public Context ctx;
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 
@@ -59,6 +59,7 @@ public class AddSongQuery {
         this.album = album;
         this.name = name;
         this.downvotes = 0;
+        this.upvotes = 0;
     }
 
     public void executeAndUpdate(String id) {
@@ -70,6 +71,7 @@ public class AddSongQuery {
             song.put("uri", uri);
             song.put("album", album);
             song.put("downvotes", downvotes);
+            song.put("upvotes", upvotes);
             Call<ResponseBody> newList = service.addSong(id, song);
             newList.enqueue(new Callback<ResponseBody>() {
                 @Override

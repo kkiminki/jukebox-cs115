@@ -27,17 +27,6 @@ public class PlaylistFragment extends Fragment{
         final Menu menu = (Menu) getActivity();
         menu.onPlayer=false;
 
-        AddPlaylistQuery f = new AddPlaylistQuery("test3", "test1", getActivity());
-        f.executeAndUpdate();
-
-        f = new AddPlaylistQuery("test4", "test5", getActivity());
-        f.executeAndUpdate();
-
-        f = new AddPlaylistQuery("test3", "test3", getActivity());
-        f.executeAndUpdate();
-
-
-
         Button submitButton = (Button) v.findViewById(R.id.create_playlist_button);
 
         ListView playlist_list = (ListView) v.findViewById(R.id.playlist_list_view);
@@ -64,6 +53,8 @@ public class PlaylistFragment extends Fragment{
                     Log.i("PlayerFragment", "Playlist name = "+playlistName.getText().toString()
                                              + "wifi = "+ssid);
                     menu.playlist = new Playlist(ssid, playlistName.getText().toString());
+                    AddPlaylistQuery f = new AddPlaylistQuery(ssid, playlistName.getText().toString(), getActivity());
+                    f.executeAndUpdate(menu.playlist);
                 }
 
             }

@@ -59,7 +59,7 @@ public class AddPlaylistQuery {
         this.name = name;
     }
 
-    public void executeAndUpdate() {
+    public void executeAndUpdate(final Playlist p) {
         PlaylistAdd service = retrofit.create(PlaylistAdd.class);
         JSONObject playlist = new JSONObject();
         try {
@@ -69,8 +69,8 @@ public class AddPlaylistQuery {
                 newList.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Response<ResponseBody> response) {
-                            Log.d("made it: ", "" + response.message());
-
+                        Log.d("made it: ", "" + response.toString());
+                        p.setID(response.toString());
                     }
                     @Override
                     public void onFailure(Throwable t) {

@@ -38,6 +38,10 @@ public class Playlist {
         this.queue=new LinkedList<Song>();
     }
 
+    public void setID(String id){
+        this.ID = id;
+    }
+
     public String getName(){
         return this.name;
     }
@@ -62,6 +66,14 @@ public class Playlist {
         }
         Log.d("Playlist", "Song added "+s.getName());
         queue.add(s);
+    }
+
+    public boolean isInPlaylist(Song s){
+        for(int i =0; i < size();i++){
+            if(getSongAt(i).equals(s))
+                return true;
+        }
+        return false;
     }
 
     public String logPlaylist(){

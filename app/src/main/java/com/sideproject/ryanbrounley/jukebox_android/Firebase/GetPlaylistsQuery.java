@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Playlist;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.PlaylistAdapter;
+import com.sideproject.ryanbrounley.jukebox_android.RetrieveWifiLocation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,12 +61,15 @@ public class GetPlaylistsQuery {
                     try {
                         JSONObject jsonArray = new JSONObject(body);
                         Iterator keys = jsonArray.keys();
+                        RetrieveWifiLocation r = new RetrieveWifiLocation(ctx);
                         while(keys.hasNext()) {
                             String key = (String) keys.next();
                             JSONObject obj1 = jsonArray.getJSONObject(key);
                             JSONObject obj2 = obj1.getJSONObject("nameValuePairs");
-                            play.add(new Playlist(key, (String) obj2.get("name"), (String) obj2.get("wifiName")));
-                            Log.d("init", play.toString());
+                            Playlist temp = new Playlist(key, (String) obj2.get("wifiName"), (String) obj2.get("name"));
+                            //if(temp.getWifi()==r.getWifiName())
+                            //    play.add(temp);
+                            //Log.d("init", play.toString());
                         }
                         PlaylistAdapter p = new PlaylistAdapter(ctx, play);
                         v.setAdapter(p);
