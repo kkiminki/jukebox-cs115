@@ -48,7 +48,7 @@ import org.w3c.dom.Text;
 //the content by overriding the setUp function in a subclass
 //and will return the initial fragment to display by overriding the getInitialFragment function
 //in a subclass
-public abstract class ThreeTabActivity extends AppCompatActivity {
+public abstract class NoTabActivity extends AppCompatActivity {
     Toolbar toolbar;
     TextView title;
 
@@ -56,7 +56,7 @@ public abstract class ThreeTabActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.widget_three_tab_bottom);
+        setContentView(R.layout.notabs);
 
         //intended to predict when there is a change in the backstack and resets the name of the
         //toolbar title via setting within the fragment
@@ -77,28 +77,8 @@ public abstract class ThreeTabActivity extends AppCompatActivity {
         //nulls out title from laying on toolbar. .setDisplayTitleEnabled(false)
         //made the value of the title null as well which didn't allow for specific
         //page names drawn from resetting the title value in the fragment
-        setToolbarText(title, "Pick a Playlist");
+        setToolbarText(title, "Add a Playlist");
         setSupportActionBar(toolbar);
-
-
-
-//        findViewById(R.id.add_playlist).setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("add pressed", "add");
-////                Log.i("PlaylistFragment", "Creating a new playlist");
-////                String str = "Playlist needs a name!";
-////                if(playlistName.getText()==null || playlistName.getText().equals(str)){
-////                    Log.i("PlayerFragment", "Playlist name not set");
-////                    playlistName.setText(str);
-////                }else{
-////                    Log.i("PlayerFragment", "Initializing new playlist");
-////                    Log.i("PlayerFragment", "Playlist name = "+playlistName.getText().toString()
-////                                             + "wifi = "+ssid);
-////                    menu.playlist = new Playlist(ssid, playlistName.getText().toString());
-////                }
-//            }
-//        });
 
         if(savedInstanceState == null) {
             //Initialize by adding the initial fragment as the content
@@ -106,13 +86,6 @@ public abstract class ThreeTabActivity extends AppCompatActivity {
                     .add(R.id.container, getInitialFragment())
                     .commit();
         }
-        setUp();
-    }
-
-    @Override
-    public boolean onSearchRequested() {
-
-        return super.onSearchRequested();
     }
 
     public void setToolbarText(TextView title, CharSequence text){
@@ -150,50 +123,5 @@ public abstract class ThreeTabActivity extends AppCompatActivity {
 
     //The fragment returned by this function will be set as the initial fragment displayed
     abstract protected Fragment getInitialFragment();
-
-    //This function should be overridden to set up the listeners to the three tabs
-    abstract protected void setUp();
-
-    //Ease of use functions that allow you to set onClickListeners to the
-    //left right and middle tabs.
-    //TODO change form using onClickListener to using RadioButton type listeners
-    protected void setLeftTabListener(View.OnClickListener listener) {
-        findViewById(R.id.tab3_left_btn).setOnClickListener(listener);
-    }
-
-    protected void setMiddleTabListener(View.OnClickListener listener) {
-        findViewById(R.id.tab3_middle_btn).setOnClickListener(listener);
-    }
-
-    protected void setRightTabListener(View.OnClickListener listener) {
-        findViewById(R.id.tab3_right_btn).setOnClickListener(listener);
-    }
-
-    //Ease of use function that allows subclasses to easily
-    //change the current fragment (the content on top of the 3 buttons)
-    protected void setContent(Fragment frag) {
-        String name = getClass().getName();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, frag)
-                .commit();
-    }
-
-    //Utility class that can be set as an onClickListener for a button
-    //When the button is clicked the current fragment is changed to
-    //mFrag
-    protected class OnClickChangeContent implements View.OnClickListener {
-        private Fragment mFrag;
-        private CharSequence titleText;
-        public OnClickChangeContent(Fragment frag, CharSequence text) {
-            mFrag = frag;
-            titleText = text;
-        }
-        @Override
-        public void onClick(View v) {
-            setContent(mFrag);
-            setToolbarText(title, titleText);
-        }
-
-    }
 
 }

@@ -3,10 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
+        <item name="colorPrimaryDark">#D84315</item>
     </style>
 
     <style name = "ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">#FF0000</item>
+        <item name="android:background">#FF5722</item>
     </style>
 
 </resources>

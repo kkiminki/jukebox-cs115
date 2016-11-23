@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bordershadow"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/playlist_inactive"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Playlist Name"
+            android:textSize="18dp"
+            android:id="@+id/playlist_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bordershadow"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/wifi"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Wifi Network"
+            android:textSize="18dp"
+            android:id="@+id/wifi_name" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_playlist"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="#FF5722"
+        android:text="Submit"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:layout_margin="20dp"/>
+</LinearLayout>

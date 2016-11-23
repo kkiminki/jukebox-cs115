@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sideproject.ryanbrounley.jukebox_android.Firebase.AddPlaylistQuery;
 import com.sideproject.ryanbrounley.jukebox_android.Firebase.GetPlaylistsQuery;
 import com.sideproject.ryanbrounley.jukebox_android.Playlist.Playlist;
+import com.sideproject.ryanbrounley.jukebox_android.SearchResponse.Item;
 
 /**
  * Created by kylerkiminki on 11/21/16.
@@ -27,19 +29,6 @@ public class PlaylistFragment extends Fragment{
         final Menu menu = (Menu) getActivity();
         menu.onPlayer=false;
 
-        AddPlaylistQuery f = new AddPlaylistQuery("test3", "test1", getActivity());
-        f.executeAndUpdate();
-
-        f = new AddPlaylistQuery("test4", "test5", getActivity());
-        f.executeAndUpdate();
-
-        f = new AddPlaylistQuery("test3", "test3", getActivity());
-        f.executeAndUpdate();
-
-
-
-        Button submitButton = (Button) v.findViewById(R.id.create_playlist_button);
-
         ListView playlist_list = (ListView) v.findViewById(R.id.playlist_list_view);
         //getPlaylist(playlist_list);
 
@@ -48,26 +37,6 @@ public class PlaylistFragment extends Fragment{
 
         RetrieveWifiLocation r = new RetrieveWifiLocation(getActivity());
         final String ssid = r.getWifiName();
-
-        final EditText playlistName = (EditText) v.findViewById(R.id.new_playlist_name);
-
-        submitButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.i("PlaylistFragment", "Creating a new playlist");
-                String str = "Playlist needs a name!";
-                if(playlistName.getText()==null || playlistName.getText().equals(str)){
-                    Log.i("PlayerFragment", "Playlist name not set");
-                    playlistName.setText(str);
-                }else{
-                    Log.i("PlayerFragment", "Initializing new playlist");
-                    Log.i("PlayerFragment", "Playlist name = "+playlistName.getText().toString()
-                                             + "wifi = "+ssid);
-                    menu.playlist = new Playlist(ssid, playlistName.getText().toString());
-                }
-
-            }
-        });
 
         return v;
     }
