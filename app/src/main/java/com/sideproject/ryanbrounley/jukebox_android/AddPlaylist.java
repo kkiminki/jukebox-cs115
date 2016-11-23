@@ -88,8 +88,6 @@ public class AddPlaylist extends NoTabActivity {
             final EditText ssid = (EditText) v.findViewById(R.id.wifi_name);
             Button submit = (Button) v.findViewById(R.id.submit_playlist);
 
-            final Menu menu = (Menu) getActivity();
-
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,9 +99,9 @@ public class AddPlaylist extends NoTabActivity {
                                 Log.i("PlayerFragment", "Initializing new playlist");
                                 Log.i("PlayerFragment", "Playlist name = "+name.getText().toString()
                                                          + "wifi = "+ssid);
-                                menu.playlist = new Playlist(ssid.getText().toString(), name.getText().toString());
+                                Playlist p = new Playlist(ssid.getText().toString(), name.getText().toString());
                                 AddPlaylistQuery apq = new AddPlaylistQuery(ssid.getText().toString(), name.getText().toString(), getActivity());
-                                apq.executeAndUpdate(menu.playlist);
+                                apq.executeAndUpdate(p);
                                 getActivity().finish();
                             }
                 }

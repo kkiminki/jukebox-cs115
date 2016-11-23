@@ -67,10 +67,10 @@ public class GetPlaylistsQuery {
                             String key = (String) keys.next();
                             JSONObject obj1 = jsonArray.getJSONObject(key);
                             JSONObject obj2 = obj1.getJSONObject("nameValuePairs");
-                            Playlist temp = new Playlist(key, (String) obj2.get("wifiName"), (String) obj2.get("name"));
+                            play.add(new Playlist(key, (String) obj2.get("wifiName"), (String) obj2.get("name")));
                             //if(temp.getWifi()==r.getWifiName())
                             //    play.add(temp);
-                            //Log.d("init", play.toString());
+                            Log.d("init", play.toString());
                         }
                         PlaylistAdapter p = new PlaylistAdapter(ctx, play);
                         v.setAdapter(p);
