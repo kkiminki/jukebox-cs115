@@ -76,6 +76,13 @@ public class Playlist {
         return false;
     }
 
+    public void hasPlayed(List<Song> songs){
+        for(int i =0; i< size();i++){
+            if(songs.contains(getSongAt(i)))
+                removeAt(i);
+        }
+    }
+
     public String logPlaylist(){
         String str="(Playlist size: "+size()+"\n";
         for(int i=0; i<size();i++){

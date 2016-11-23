@@ -13,6 +13,8 @@ import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.PlayerNotificationCallback;
 import com.spotify.sdk.android.player.PlayerState;
 import com.spotify.sdk.android.player.Spotify;
+
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,6 +39,8 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
     public String current="No song currently playing";
     //Fragment manager for the menu activity
     public FragmentManager fm =getSupportFragmentManager();
+    //List of played songs
+    public List<Song> songPlayed = new LinkedList<Song>();
 
     //Configures the player with the access token passed in
     //from MainActivity
@@ -77,6 +81,7 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
         mPlayer.play(song.getUri());
         Log.d("Menu", "Calling PlaySong");
         Log.d("Menu", "URI = "+song);
+        songPlayed.add(song);
         if(onPlayer)
             updatePlayer();
     }
@@ -150,8 +155,10 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
                     current =  playlist.getSongAt(0).getArtists()+": "
                             +playlist.getSongAt(0).getName();
                     Log.i("Menu", "In TRACK_CHANGED current = "+current);
+                    songPlayed.add(playlist.getSongAt(0));
                     mPlayer.queue(playlist.popSong().getUri());
                     //firebase.getPlayist
+                    //menu.playlist.hasPlayer(songsPlayed);
                     playlist.vetoScan();
                     playlist.sort();
                     if(onPlayer)
