@@ -77,7 +77,6 @@ public class Menu extends MainThreeTabActivity implements PlayerNotificationCall
 
     //Helper function to play a song
     public void PlaySong(Song song){
-        playlist.addSong(song);
         current = song.getArtists()+": "
                 +song.getName();
         mPlayer.play(song.getUri());

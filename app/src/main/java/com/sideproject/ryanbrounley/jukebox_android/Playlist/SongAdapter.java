@@ -75,18 +75,12 @@ public class SongAdapter extends ArrayAdapter<Song> {
         downvote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                GetSinglePlaylistQuery sq;
-                UpdatePlaylistQuery uq;
-                sq = new GetSinglePlaylistQuery(getContext());
-                sq.executeAndUpdate(menu.playlist.getID());
                 menu.playlist.getSongAt(s.getUri()).addDownvote();
                 //If downvotes >= 3 then remove the song
                 if (menu.playlist.getSongAt(s.getUri()).getDownvotes() >= 3){
                     menu.playlist.remove(s);
+                    menu.updatePlayer();
                 }
-                uq = new UpdatePlaylistQuery(menu.playlist.getQueue(), getContext());
-                uq.executeAndUpdate(menu.playlist.getID());
-                menu.updatePlayer();
                 Log.i("PlayerFragment", "Adding downvote");
                 Log.i("PlayerFragment", "Downvote count: "+s.getDownvotes());
             }

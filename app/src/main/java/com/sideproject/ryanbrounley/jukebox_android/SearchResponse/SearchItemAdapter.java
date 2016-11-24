@@ -46,22 +46,9 @@ public class SearchItemAdapter extends ArrayAdapter<Item> {
                     Log.d("SearchAdapter", "clicked");
                     //menu.PlayerEnqueue(s);
                     if(menu.playlist.isEmpty() && !menu.playing) {
-                        sq = new GetSinglePlaylistQuery(getContext());
-                        sq.executeAndUpdate(menu.playlist.getID());
-                        menu.playlist.addSong(s);
-                        uq = new UpdatePlaylistQuery(menu.playlist.getQueue(), getContext());
-                        uq.executeAndUpdate(menu.playlist.getID());
-                        menu.playlist.popSong();
                         menu.PlaySong(s);
                         Log.i("SearchAdapter", "Playing song "+s.getName());
                     }else{
-                        if(!menu.playlist.isInPlaylist(s)) {
-                            sq = new GetSinglePlaylistQuery(getContext());
-                            sq.executeAndUpdate(menu.playlist.getID());
-                            menu.playlist.addSong(s);
-                            uq = new UpdatePlaylistQuery(menu.playlist.getQueue(), getContext());
-                            uq.executeAndUpdate(menu.playlist.getID());
-                        }
                         Log.i("SearchAdapter", "enqueue");
                         menu.PlayerEnqueue(s);
                         Log.i("PlayerAdapter", "Enqueueing Song "+s.getName());
